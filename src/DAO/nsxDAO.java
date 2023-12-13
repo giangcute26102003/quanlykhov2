@@ -15,46 +15,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
+
 
 /**
  *
  * @author gjang
  */
 public class nsxDAO extends connect{
-//    public Vector<nha_san_xuat> allnsx(){
-//        Vector<nha_san_xuat> listnsx = new Vector<nha_san_xuat>();
-//        try {
-//            String sql = "select * from nha_san_xuat";
-//            PreparedStatement pstm=con.prepareStatement(sql);
-//            ResultSet rs= pstm.executeQuery(sql);
-//            while (rs.next()) {
-//                   nha_san_xuat nsx = new nha_san_xuat();
-//                   nsx.setId(rs.getInt(1));
-//                   nsx.setName(rs.getString(2));
-//                   nsx.setAddress(rs.getString(3));
-//                   nsx.setPhone(rs.getString(4));
-//                   listnsx.add(nsx);
-//                
-//            }
-//        } catch (Exception e) {
-//        }
-//        
-//        return listnsx; 
-//    }
     public ArrayList<nha_san_xuat> allnsx() {
-        ArrayList<nha_san_xuat> listnsx  = new ArrayList<>();
+        ArrayList<nha_san_xuat> listnsx  = new ArrayList<nha_san_xuat>();
         try {
-            String sql = "SELECT * FROM nhasanxuat where status = 1";
+            String sql = "SELECT id,name,address,email,phone FROM nhasanxuat where status=1";
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 nha_san_xuat nsx = new nha_san_xuat();
+                
                 nsx.setId(rs.getInt("id"));
                 nsx.setName(rs.getString("name"));
                 nsx.setAddress(rs.getString("address"));
                 nsx.setEmail(rs.getString("email"));
                 nsx.setPhone(rs.getString("phone"));
+  
                 listnsx.add(nsx);
             }
         } catch (Exception e) {
@@ -63,20 +45,46 @@ public class nsxDAO extends connect{
         return listnsx;
     }
     
-    public ArrayList<nha_san_xuat> allnsxbyId(String id){
+    public ArrayList<nha_san_xuat> allnsxbyID(String id){
         ArrayList<nha_san_xuat> listnsx = new ArrayList<nha_san_xuat>();
         try {
-            String sql = "select * from nhasanxuat where id = "+id;
+            String sql = "select id,name,address,email,phone from nhasanxuat where id = ? and status=1";
             PreparedStatement pstm=con.prepareStatement(sql);
-            ResultSet rs= pstm.executeQuery(sql);
+            pstm.setString(1,id);
+            ResultSet rs= pstm.executeQuery();
             while (rs.next()) {
                     nha_san_xuat nsx = new nha_san_xuat();
+                    
                     nsx.setId(rs.getInt("id"));
                     nsx.setName(rs.getString("name"));
                     nsx.setAddress(rs.getString("address"));
                     nsx.setEmail(rs.getString("email"));
                     nsx.setPhone(rs.getString("phone"));
-                    nsx.setStatus(rs.getInt("status"));
+
+                    listnsx.add(nsx); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return listnsx; 
+    }
+    
+    public ArrayList<nha_san_xuat> allnsxbyName(String namensx){
+        ArrayList<nha_san_xuat> listnsx = new ArrayList<nha_san_xuat>();
+        try {
+            String sql = "select id,name,address,email,phone from nhasanxuat where name = ? and status=1";
+            PreparedStatement pstm=con.prepareStatement(sql);
+            pstm.setString(1, namensx);
+            ResultSet rs= pstm.executeQuery();
+            while (rs.next()) {
+                    nha_san_xuat nsx = new nha_san_xuat();
+                    
+                    nsx.setId(rs.getInt("id"));
+                    nsx.setName(rs.getString("name"));
+                    nsx.setAddress(rs.getString("address"));
+                    nsx.setEmail(rs.getString("email"));
+                    nsx.setPhone(rs.getString("phone"));
+
                     listnsx.add(nsx); 
             }
         } catch (Exception e) {
@@ -88,8 +96,7 @@ public class nsxDAO extends connect{
     public int returnID(String namensx){
        int idnsx=-1;
         try { 
-            
-            String sql = "select id from nhasanxuat where name = ?";
+            String sql = "select id from nhasanxuat where name = ? and status=1";
             PreparedStatement pre=con.prepareStatement(sql);
             pre.setString(1, namensx);
             ResultSet a = pre.executeQuery(sql);
@@ -102,48 +109,35 @@ public class nsxDAO extends connect{
         }
         return -1;
     }
-      public int luusp(nha_san_xuat nsx){
-        String sql = "INSERT INTO `nhasanxuat` (`name`, `address`,`email`,`phone`) VALUES ( ?,?,?,?)";
+    public int luuNSX(nha_san_xuat nsx){
+        String sql = "INSERT INTO `nhasanxuat` (`name`, `address`,`email`,`phone`,`status`) VALUES ( ?,?,?,?,?)";
         try {
               PreparedStatement pre = con.prepareStatement(sql);
               pre.setString(1, nsx.getName());
               pre.setString(2, nsx.getAddress());
               pre.setString(3,nsx.getEmail());
               pre.setString(4, nsx.getPhone());
+              pre.setInt(5,nsx.getStatus());
               return pre.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         return -1;
     }
-     public int update(nha_san_xuat nsx){
-        String sql = "UPDATE `nhasanxuat` SET `name`=?,`address`=?,`email`=?,`phone`=? WHERE id = ?";
+    public int update(nha_san_xuat nsx){
+        String sql = "UPDATE `nhasanxuat` SET `name`=?,`address`=?,`email`=?,`phone`=?,`status`=? WHERE id = ?";
         try {
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1, nsx.getName());
             pre.setString(2, nsx.getAddress());
             pre.setString(3,nsx.getEmail());
             pre.setString(4, nsx.getPhone());
-            pre.setInt(5, nsx.getId());
+            pre.setInt(5,nsx.getStatus());
+            pre.setInt(6, nsx.getId());
             return pre.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return -1;
-    }
-     
-public int delete(nha_san_xuat nsx){
-        String sql = "UPDATE `nhasanxuat` SET `status`=0 WHERE id = ?";
-        try {
-            PreparedStatement pre = con.prepareStatement(sql);
-            pre.setInt(1, nsx.getId());
-            return pre.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return -1;
-    }
+    }     
 }
