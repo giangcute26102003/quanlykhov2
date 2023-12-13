@@ -43,6 +43,33 @@ public class sanphamDAO extends connect{
         return allsp;
     }
     
+    public ArrayList<san_pham> allsanphambyId(String id){
+        ArrayList<san_pham> allsp = new ArrayList<san_pham>();
+        try {
+            String sql = "Select sp.id,sp.name,sp.desc,sp.photo,sp.price,sp.quantity,nsx.name as namensx from sanpham sp "
+                    + "join nhasanxuat nsx on sp.id_nsx=nsx.id where sp.status=1 ";
+            PreparedStatement pre = con.prepareStatement(sql);
+            pre.setString(1,id);
+            ResultSet  rs = pre.executeQuery();
+            while(rs.next()){
+                san_pham sp = new san_pham();
+
+                sp.setId(rs.getInt("id"));
+                sp.setName(rs.getString("name"));
+                sp.setDesc(rs.getString("desc"));
+                sp.setPhoto(rs.getString("photo"));
+                sp.setPrice(rs.getInt("price"));
+                sp.setQuantity(rs.getInt("quantity"));
+                sp.setNamensx(rs.getString("namensx"));
+                
+                allsp.add(sp);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allsp;
+    }
+    
     public ArrayList<san_pham> filterAll(String s){
         ArrayList<san_pham> allsp = new ArrayList<san_pham>();
         try{
