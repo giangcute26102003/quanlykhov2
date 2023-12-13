@@ -89,9 +89,8 @@ public class nsxDAO extends connect{
        int idnsx=-1;
         try { 
             
-            String sql = "select id from nhasanxuat where name = ?";
+            String sql = "select id from nhasanxuat where name = '"+namensx+"'";
             PreparedStatement pre=con.prepareStatement(sql);
-            pre.setString(1, namensx);
             ResultSet a = pre.executeQuery(sql);
             while(a.next()){
                 idnsx = a.getInt("id");

@@ -20,35 +20,36 @@ public class tonkho extends javax.swing.JFrame {
     /**
      * Creates new form tonkho
      */
+    ArrayList<san_pham> listsanpham = new ArrayList<>();
     public tonkho() {
         initComponents();
         
-       hienthi();
+       hienthilentable();
          
     }
     
-    public void hienthi()
-    {
-       
- sanphamDAO spDao = new sanphamDAO();
-        ArrayList<san_pham> sp = spDao.allsanpham();
-        DefaultTableModel tblsp = (DefaultTableModel)listsp.getModel();
-        
-        
-            for(san_pham sa : sp){
-             
+     public void hienthilentable(){
+         sanphamDAO spDao = new sanphamDAO();
+        listsanpham =  spDao.allsanpham();
+        DefaultTableModel tblsp = (DefaultTableModel)listsp.getModel(); 
+        tblsp.setRowCount(0);
+        for(san_pham sa : listsanpham){
          int id=sa.getId();
          String name=sa.getName();
          String desc=sa.getDesc();
-         String photo=sa.getPhoto();
-         int id_nsx  = sa.getId_nsx();
-        
-       
-         tblsp.addRow(new Object[]{id,name,desc,photo,id_nsx});
+         int price = sa.getPrice();
+         int quantity = sa.getQuantity();
+         String nsx=sa.getNameNsxString();
+//         int id=1;
+//         String name="111";
+//         String desc="111";
+//         int price = 111;
+//         int quantity = 1;
+//         String nsx="111";
+         tblsp.addRow(new Object[]{id,name,desc,price,quantity,nsx});
          }
-            int index  = listsp.getSelectedRow();
-           
-    }
+  
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,24 +62,25 @@ public class tonkho extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jScrollPane1 = new javax.swing.JScrollPane();
         listsp = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listsp.setBackground(new java.awt.Color(204, 204, 204));
-        listsp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        listsp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        listsp.setForeground(new java.awt.Color(255, 102, 102));
         listsp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NAME", "DESCRIPTION", "PHOTO", "NSX"
+                "ID", "NAME", "DESCRIPTION", "PHOTO", "NSX", "Title 6"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -91,18 +93,23 @@ public class tonkho extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listsp);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 004833.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -144,6 +151,7 @@ public class tonkho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listsp;
