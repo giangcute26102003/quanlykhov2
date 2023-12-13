@@ -48,7 +48,7 @@ public class sanphamDAO extends connect{
         try{
             String sql = "Select sp.id,sp.name,sp.desc,sp.photo,sp.price,sp.quantity,nsx.name as namensx  from sanpham sp "
                     + "join nhasanxuat nsx on sp.id_nsx=nsx.id "
-                    + "where (sp.status=1 and nsx.status=1) and (sp.name like ? or sp.desc like ? or nsx.name like ?)";
+                    + "where sp.status=1  and (sp.name like ? or sp.desc like ? or nsx.name like ?)";
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setString(1,"%"+s+"%");
             pre.setString(2,"%"+s+"%");
