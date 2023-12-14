@@ -5,7 +5,9 @@
 package GUI;
 
 import DAO.nsxDAO;
+import DAO.userDAO;
 import DTO.nha_san_xuat;
+import DTO.user;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.management.StringValueExp;
@@ -49,6 +51,7 @@ public class themnsx extends javax.swing.JFrame {
        }
        
     }
+       
     public void returnNULL(String rong){
         rong = "";
         jname.setText(rong);

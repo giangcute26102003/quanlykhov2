@@ -4,7 +4,10 @@
  */
 package GUI;
 
+import DAO.userDAO;
+import DTO.user;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,10 +18,26 @@ public class giaodienchinh extends javax.swing.JFrame {
     /**
      * Creates new form giaodienchinh
      */
-    public giaodienchinh() {
-        initComponents();
+    public  int id;
+    public  giaodienchinh() {
+        
+        
+    }
+    public giaodienchinh(int id){
+        this.id = id;
+        initComponents( );
+       showinfo();
     }
 
+    public void showinfo(){
+        userDAO login = new userDAO();
+      user info = login.loginbyid(String.valueOf(1));
+      cboinfo.addItem(info.getName());
+      cboinfo.addItem("Info");
+      cboinfo.addItem("Change PassWord");
+      cboinfo.addItem("Logout");
+      
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +55,7 @@ public class giaodienchinh extends javax.swing.JFrame {
         Jtonkho = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cboinfo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -118,13 +138,24 @@ public class giaodienchinh extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 004833.png"))); // NOI18N
 
+        cboinfo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        cboinfo.setAlignmentX(2.0F);
+        cboinfo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cboinfo.setInheritsPopupMenu(true);
+        cboinfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboinfoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboinfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,11 +165,15 @@ public class giaodienchinh extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(cboinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        cboinfo.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,8 +201,33 @@ public class giaodienchinh extends javax.swing.JFrame {
     }//GEN-LAST:event_JtonkhoActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        quanlynhanvien qlnv = new quanlynhanvien();
+        qlnv.setVisible(true);
+        qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void cboinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboinfoActionPerformed
+        String valueIn = cboinfo.getSelectedItem().toString();
+        switch (valueIn) {
+            case "Logout":
+                dangnhap logout = new dangnhap();
+                logout.setVisible(true);
+                dispose();
+                break;
+            case "Info": 
+                info_login ilog = new info_login(id);
+                ilog.setVisible(true);
+                ilog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;
+            case "Change PassWord": 
+                change_pass cpass = new change_pass(id);
+                cpass.setVisible(true);
+                cpass.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;    
+            default:
+                
+        }
+    }//GEN-LAST:event_cboinfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +270,7 @@ public class giaodienchinh extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jtonkho;
+    private javax.swing.JComboBox<String> cboinfo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -8,6 +8,8 @@ import DAO.userDAO;
 import DTO.user;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,30 +24,44 @@ public class quanlynhanvien extends javax.swing.JFrame {
     ArrayList<user> listuser = new ArrayList<user>();
     public quanlynhanvien() {
         initComponents();
+        hienthilentable();
+        showcbobox();
     }
     public void hienthilentable(){
-         userDAO userdao = new userDAO();
-        listuser =userdao.alluser();
+        userDAO list = new userDAO();
+        listuser =list.alluser();
         DefaultTableModel tbluser = (DefaultTableModel)jtbluser.getModel(); 
-        tbluser.setRowCount(0);
         for(user usr : listuser){
          int id=usr.getId();
          String name=usr.getName();
          String username=usr.getUser_name();
          int level = usr.getLevel();
+         String level_name;
+            switch (level) {
+                case 1:
+                   level_name = "Giam doc";
+                    break;
+                case 2:
+                    level_name = "Quan ly";
+                    break;
+                case 3:
+                    level_name = "Nhan vien";
+                    break;
+                default:
+                    level_name = "Nhan vien";
+            }
          
+        tbluser.addRow(new Object[]{id,name,username,level_name});
         
-       
-//         int id=1;
-//         String name="111";
-//         String desc="111";
-//         int price = 111;
-//         int quantity = 1;
-//         String nsx="111";
-         tbluser.addRow(new Object[]{id,name,username,level});
-         }
+        
+        }
   
      }
+    public void showcbobox(){
+        cbonv.addItem("Giam doc");
+        cbonv.addItem("Quan ly");
+        cbonv.addItem("Nhan Vien");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,17 +76,14 @@ public class quanlynhanvien extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jdelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtbluser = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jname = new javax.swing.JTextField();
-        jemail = new javax.swing.JTextField();
-        jaddress = new javax.swing.JTextField();
+        juser = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jupdate = new javax.swing.JButton();
         cbonv = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtbluser = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,7 +91,7 @@ public class quanlynhanvien extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 004833.png"))); // NOI18N
 
-        jdelete.setBackground(new java.awt.Color(255, 204, 204));
+        jdelete.setBackground(new java.awt.Color(255, 51, 51));
         jdelete.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         jdelete.setForeground(new java.awt.Color(0, 153, 204));
         jdelete.setText("Delete");
@@ -92,28 +105,6 @@ public class quanlynhanvien extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel1.setText("Name");
 
-        jtbluser.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtbluser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "NAME", "ADDRESS", "EMAIL", "PHONE"
-            }
-        ));
-        jtbluser.setColumnSelectionAllowed(true);
-        jtbluser.setUpdateSelectionOnSort(false);
-        jtbluser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtbluserMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtbluser);
-
-        jLabel3.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel3.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel3.setText("pass word");
-
         jLabel5.setBackground(new java.awt.Color(255, 153, 51));
         jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel5.setText("user name");
@@ -124,33 +115,22 @@ public class quanlynhanvien extends javax.swing.JFrame {
             }
         });
 
-        jemail.addActionListener(new java.awt.event.ActionListener() {
+        juser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jemailActionPerformed(evt);
+                juserActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 204));
-        jButton1.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(153, 255, 153));
+        jButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 204));
-        jButton1.setText("ADD");
+        jButton1.setText("New Employee");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jupdate.setBackground(new java.awt.Color(255, 204, 204));
-        jupdate.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
-        jupdate.setForeground(new java.awt.Color(0, 153, 204));
-        jupdate.setText("Update");
-        jupdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jupdateActionPerformed(evt);
-            }
-        });
-
-        cbonv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbonv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbonvActionPerformed(evt);
@@ -161,27 +141,31 @@ public class quanlynhanvien extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel7.setText("level");
 
+        jtbluser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtbluser.setAlignmentX(1.0F);
+        jtbluser.setOpaque(false);
+        jtbluser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbluserMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtbluser);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jupdate)
-                        .addGap(12, 12, 12)
-                        .addComponent(jdelete))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -190,137 +174,100 @@ public class quanlynhanvien extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addGap(54, 54, 54))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(jLabel7)
+                                .addGap(82, 82, 82)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jaddress)
                                 .addComponent(jname)
-                                .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(59, 59, 59)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                                .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jdelete)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jupdate)
-                            .addComponent(jdelete))
-                        .addGap(45, 45, 45))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jdelete)
+                    .addComponent(jButton1))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdeleteActionPerformed
-        // TODO add your handling code here:
-        nha_san_xuat nsx = new nha_san_xuat();
-        nsx.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
-        nsxDAO nsxdao = new nsxDAO();
-
-        if(nsxdao.delete(nsx)>0){
-            JOptionPane.showMessageDialog(rootPane, "thanh cong");
-            showlist();
-            returnNULL("");
-
-        }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
+     userDAO deluser = new userDAO();
+     user del = new  user();
+     del.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
+     if(deluser.deleteUser(del)>0){
+         JOptionPane.showMessageDialog(rootPane, "thanh cong");
+         hienthilentable();
+     }
     }//GEN-LAST:event_jdeleteActionPerformed
-
-    private void jtbluserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbluserMouseClicked
-        // TODO add your handling code here:
-        nsxDAO nsxdao = new nsxDAO();
-        listnhasanxuat.clear();
-        listnhasanxuat = nsxdao.allnsxbyId(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString());
-        for(nha_san_xuat nsx : listnhasanxuat){
-            jname.setText(nsx.getName());
-            jaddress.setText(nsx.getAddress());
-            jemail.setText(nsx.getEmail());
-            jphone.setText(nsx.getPhone());
-        }
-    }//GEN-LAST:event_jtbluserMouseClicked
 
     private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jnameActionPerformed
 
-    private void jemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jemailActionPerformed
+    private void juserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_juserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jemailActionPerformed
+    }//GEN-LAST:event_juserActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nha_san_xuat nsx = new nha_san_xuat();
-        nsx.setName(jname.getText());
-        nsx.setAddress(jaddress.getText());
-        nsx.setPhone(jphone.getText());
-        nsx.setEmail(jemail.getText());
-
-        nsxDAO nsxdao = new nsxDAO();
-
-        if(nsxdao.luusp(nsx)>0){
-            JOptionPane.showMessageDialog(rootPane, "thanh cong");
-            showlist();
-
-        }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
+       themnhanvien themnv = new themnhanvien();
+       themnv.setVisible(true);
+       themnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdateActionPerformed
-        nha_san_xuat nsx = new nha_san_xuat();
-        nsx.setName(jname.getText());
-        nsx.setAddress(jaddress.getText());
-        nsx.setPhone(jphone.getText());
-        nsx.setEmail(jemail.getText());
-        nsx.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
-        nsxDAO nsxdao = new nsxDAO();
-
-        if(nsxdao.update(nsx)>0){
-            JOptionPane.showMessageDialog(rootPane, "thanh cong");
-
-            returnNULL("");
-            showlist();
-        }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
-
-    }//GEN-LAST:event_jupdateActionPerformed
-
     private void cbonvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbonvActionPerformed
-        DefaultComboBoxModel cbonv= new DefaultComboBoxModel();
-        cbonv.addElement("quan ly");
-        cbonv.addElement("nhan vien");
+       
     }//GEN-LAST:event_cbonvActionPerformed
+
+    private void jtbluserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbluserMouseClicked
+       userDAO userclick = new userDAO();
+       listuser = userclick.alluserbyId(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString());
+       for(user click : listuser){
+          jname.setText(click.getName());
+          juser.setText(click.getUser_name());
+          cbonv.setSelectedIndex(click.getLevel()-1);
+       }
+       
+    }//GEN-LAST:event_jtbluserMouseClicked
 
     /**
      * @param args the command line arguments
@@ -362,16 +309,13 @@ public class quanlynhanvien extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jaddress;
     private javax.swing.JButton jdelete;
-    private javax.swing.JTextField jemail;
     private javax.swing.JTextField jname;
     private javax.swing.JTable jtbluser;
-    private javax.swing.JButton jupdate;
+    private javax.swing.JTextField juser;
     // End of variables declaration//GEN-END:variables
 }

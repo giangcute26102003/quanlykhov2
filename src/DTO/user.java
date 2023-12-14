@@ -78,7 +78,6 @@ public class user {
         return "user{" + "id=" + id + ", name=" + name + ", user_name=" + user_name + ", pw=" + pw + ", level=" + level + ", status=" + status + '}';
     }
     
-    public user(){
-        
+    public user(){    
     }
 }
