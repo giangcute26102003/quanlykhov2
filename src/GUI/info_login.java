@@ -89,6 +89,12 @@ public class info_login extends javax.swing.JFrame {
 
         jLabel4.setText("Phone");
 
+        jname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jnameActionPerformed(evt);
+            }
+        });
+
         jlevel.setFont(new java.awt.Font("SimSun-ExtB", 1, 16)); // NOI18N
         jlevel.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         jlevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,6 +161,10 @@ public class info_login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jnameActionPerformed
 
     /**
      * @param args the command line arguments

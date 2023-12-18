@@ -18,21 +18,25 @@ public class giaodienchinh extends javax.swing.JFrame {
     /**
      * Creates new form giaodienchinh
      */
-    public  int id;
-    public  giaodienchinh() {
-        
+    public  int id ;
+     
+    public  giaodienchinh() {    
         
     }
     public giaodienchinh(int id){
         this.id = id;
-        initComponents( );
-       showinfo();
+        initComponents();
+        showinfo();
     }
-
+    
+    
+      userDAO login = new userDAO();
+      user info =new user();
+      
+      
     public void showinfo(){
-        userDAO login = new userDAO();
-      user info = login.loginbyid(String.valueOf(1));
-      cboinfo.addItem(info.getName());
+      info = login.loginbyid(String.valueOf(id));
+      cboinfo.addItem("Xin Chao "+info.getName());  
       cboinfo.addItem("Info");
       cboinfo.addItem("Change PassWord");
       cboinfo.addItem("Logout");
@@ -201,9 +205,14 @@ public class giaodienchinh extends javax.swing.JFrame {
     }//GEN-LAST:event_JtonkhoActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        quanlynhanvien qlnv = new quanlynhanvien();
+            if(info.getLevel()>2)
+            JOptionPane.showMessageDialog(rootPane, "you aren't admin ");
+        
+        else {
+        quanlynhanvien qlnv = new quanlynhanvien(info.getId());
         qlnv.setVisible(true);
         qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void cboinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboinfoActionPerformed
@@ -258,9 +267,10 @@ public class giaodienchinh extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-               giaodienchinh gdc= new giaodienchinh();
-               gdc.setVisible(true);
+               new giaodienchinh().setVisible(true);
+               
             
              
                

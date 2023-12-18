@@ -56,7 +56,7 @@ import java.util.ArrayList;
             PreparedStatement pre = con.prepareStatement(sql);
 
             ResultSet rs= pre.executeQuery();
-            if(rs.next())
+            while(rs.next())
             {
                 nd= new user();
                 nd.setId(rs.getInt("id"));
@@ -79,7 +79,7 @@ import java.util.ArrayList;
            
             PreparedStatement pre = con.prepareStatement(sql);
             ResultSet rs= pre.executeQuery();
-            if(rs.next())
+            while(rs.next())
             {
                 user nd = new user();
                 nd.setId(rs.getInt("id"));
