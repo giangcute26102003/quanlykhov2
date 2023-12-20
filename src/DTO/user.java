@@ -9,18 +9,23 @@ package DTO;
  * @author gjang
  */
 public class user {
-     private int id;
+
+    private int id;
     private String name;
     private String user_name;
     private String pw;
+    private String birth;
+    private String phone;
     private int level;
     private int status;
 
-    public user(int id, String name, String user_name, String pw, int level, int status) {
+    public user(int id, String name, String user_name, String pw, String birth, String phone, int level, int status) {
         this.id = id;
         this.name = name;
         this.user_name = user_name;
         this.pw = pw;
+        this.birth = birth;
+        this.phone = phone;
         this.level = level;
         this.status = status;
     }
@@ -39,6 +44,14 @@ public class user {
 
     public String getPw() {
         return pw;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public int getLevel() {
@@ -65,6 +78,14 @@ public class user {
         this.pw = pw;
     }
 
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public void setLevel(int level) {
         this.level = level;
     }
@@ -75,9 +96,9 @@ public class user {
 
     @Override
     public String toString() {
-        return "user{" + "id=" + id + ", name=" + name + ", user_name=" + user_name + ", pw=" + pw + ", level=" + level + ", status=" + status + '}';
+        return "user{" + "id=" + id + ", name=" + name + ", user_name=" + user_name + ", pw=" + pw + ", birth=" + birth + ", phone=" + phone + ", level=" + level + ", status=" + status + '}';
     }
-    
-    public user(){    
+
+    public user() {
     }
 }

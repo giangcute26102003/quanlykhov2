@@ -6,10 +6,16 @@ package GUI;
 
 import DAO.sanphamDAO;
 import DTO.san_pham;
+
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -21,35 +27,37 @@ public class tonkho extends javax.swing.JFrame {
      * Creates new form tonkho
      */
     ArrayList<san_pham> listsanpham = new ArrayList<>();
+
     public tonkho() {
         initComponents();
-        
-       hienthilentable();
-         
+
+        hienthilentable();
+
     }
-    
-     public void hienthilentable(){
-         sanphamDAO spDao = new sanphamDAO();
-        listsanpham =  spDao.allsanpham();
-        DefaultTableModel tblsp = (DefaultTableModel)listsp.getModel(); 
+
+    public void hienthilentable() {
+        sanphamDAO spDao = new sanphamDAO();
+        listsanpham = spDao.allsanpham();
+        DefaultTableModel tblsp = (DefaultTableModel) listsp.getModel();
         tblsp.setRowCount(0);
-        for(san_pham sa : listsanpham){
-         int id=sa.getId();
-         String name=sa.getName();
-         String desc=sa.getDesc();
-         int price = sa.getPrice();
-         int quantity = sa.getQuantity();
-         String nsx=sa.getNameNsxString();
+        for (san_pham sa : listsanpham) {
+            int id = sa.getId();
+            String name = sa.getName();
+            String desc = sa.getDesc();
+            int price = sa.getPrice();
+            int quantity = sa.getQuantity();
+            String nsx = sa.getNameNsxString();
 //         int id=1;
 //         String name="111";
 //         String desc="111";
 //         int price = 111;
 //         int quantity = 1;
 //         String nsx="111";
-         tblsp.addRow(new Object[]{id,name,desc,price,quantity,nsx});
-         }
-  
-     }
+            tblsp.addRow(new Object[]{id, name, desc, price, quantity, nsx});
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +71,7 @@ public class tonkho extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listsp = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,11 +82,11 @@ public class tonkho extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "NAME", "DESCRIPTION", "PHOTO", "NSX", "Title 6"
+                "ID", "NAME", "DESCRIPTION", "PRICE", "QUANTITY", "NSX"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, true
@@ -95,6 +104,14 @@ public class tonkho extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 004833.png"))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setText("Xuất Excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,17 +120,55 @@ public class tonkho extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(10, 10, 10))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("TonKho");
+
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < listsp.getColumnCount(); i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(listsp.getColumnName(i));
+            }
+
+            for (int i = 0; i < listsp.getRowCount(); i++) {
+                Row dataRow = sheet.createRow(i + 1);
+                for (int j = 0; j < listsp.getColumnCount(); j++) {
+                    Cell cell = dataRow.createCell(j);
+                    cell.setCellValue(listsp.getValueAt(i, j).toString());
+                }
+            }
+
+            try (FileOutputStream outputStream = new FileOutputStream("TonKho.xlsx")) {
+                workbook.write(outputStream);
+            }
+
+            workbook.close();
+
+            JOptionPane.showMessageDialog(this, "Đã xuất file Excel thành công.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi xuất Excel: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,12 +201,13 @@ public class tonkho extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new tonkho().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
