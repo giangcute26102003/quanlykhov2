@@ -16,43 +16,43 @@ public class info_login extends javax.swing.JFrame {
     /**
      * Creates new form info_login
      */
-   public int idnv;
+    public int idnv;
     userDAO infouser = new userDAO();
-     user newuser = new  user(); 
+    user newuser = new user();
+
     public info_login(int idnv) {
         this.idnv = idnv;
         initComponents();
         showinfo();
     }
-      public info_login() {
+
+    public info_login() {
 
     }
 
-    
-    
-    
     public void showinfo() {
-       newuser = infouser.loginbyid(String.valueOf(idnv)); 
+        newuser = infouser.loginbyid(String.valueOf(idnv));
         jname.setText(newuser.getName());
         juser.setText(newuser.getUser_name());
+        jbirth.setText(newuser.getBirth());
+        jphone.setText(newuser.getPhone());
         int level = newuser.getLevel();
-         String level_name = "";
-            switch (level) {
-                case 1:
-                   level_name = "Giam doc";
-                    break;
-                case 2:
-                    level_name = "Quan ly";
-                    break;
-                case 3:
-                    level_name = "Nhan vien";
-                    break;
-                default:
-                    level_name = "Nhan vien";
-            }
+        String level_name = "";
+        switch (level) {
+            case 1:
+                level_name = "Giam doc";
+                break;
+            case 2:
+                level_name = "Quan ly";
+                break;
+            case 3:
+                level_name = "Nhan vien";
+                break;
+            default:
+                level_name = "Nhan vien";
+        }
         jlevel.setText(level_name);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,8 +69,8 @@ public class info_login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jname = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jbirth = new javax.swing.JTextField();
+        jphone = new javax.swing.JTextField();
         juser = new javax.swing.JTextField();
         jlevel = new javax.swing.JLabel();
 
@@ -113,10 +113,10 @@ public class info_login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlevel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jphone, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbirth, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,11 +134,11 @@ public class info_login extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -192,6 +192,9 @@ public class info_login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(info_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -207,10 +210,10 @@ public class info_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jbirth;
     private javax.swing.JLabel jlevel;
     private javax.swing.JTextField jname;
+    private javax.swing.JTextField jphone;
     private javax.swing.JTextField juser;
     // End of variables declaration//GEN-END:variables
 }

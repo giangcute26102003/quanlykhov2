@@ -9,6 +9,7 @@ import DTO.san_pham;
 import com.mysql.cj.xdevapi.PreparableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -40,7 +41,7 @@ public class sanphamDAO extends connect{
                 
                 allsp.add(sp);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return allsp;
@@ -98,7 +99,7 @@ public class sanphamDAO extends connect{
                 
                 allsp.add(sp);
             }        
-        }catch (Exception e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return allsp;
@@ -116,7 +117,7 @@ public class sanphamDAO extends connect{
             pre.setInt(5, sp.getId_nsx());
 
             return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;
@@ -135,7 +136,7 @@ public class sanphamDAO extends connect{
             pre.setInt(6, sp.getId());
              
             return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;
@@ -147,7 +148,7 @@ public class sanphamDAO extends connect{
             pre.setInt(1, sp.getId());
              
             return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;
@@ -168,7 +169,7 @@ public class sanphamDAO extends connect{
                 
                 xk.add(sp);
             }
-        }catch (Exception e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return xk;

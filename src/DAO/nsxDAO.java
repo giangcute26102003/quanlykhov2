@@ -57,7 +57,7 @@ public class nsxDAO extends connect{
                 nsx.setPhone(rs.getString("phone"));
                 listnsx.add(nsx);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return listnsx;
@@ -79,7 +79,7 @@ public class nsxDAO extends connect{
                     nsx.setStatus(rs.getInt("status"));
                     listnsx.add(nsx); 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } 
         return listnsx; 
@@ -110,7 +110,7 @@ public class nsxDAO extends connect{
               pre.setString(3,nsx.getEmail());
               pre.setString(4, nsx.getPhone());
               return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         
@@ -126,7 +126,7 @@ public class nsxDAO extends connect{
             pre.setString(4, nsx.getPhone());
             pre.setInt(5, nsx.getId());
             return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -139,7 +139,7 @@ public int delete(nha_san_xuat nsx){
             PreparedStatement pre = con.prepareStatement(sql);
             pre.setInt(1, nsx.getId());
             return pre.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

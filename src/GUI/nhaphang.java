@@ -26,48 +26,51 @@ public class nhaphang extends javax.swing.JFrame {
      * Creates new form nhaphang
      */
     ArrayList<san_pham> listsanpham = new ArrayList<san_pham>();
+
     public nhaphang() {
         initComponents();
         hienthilentable();
         hienthinsx();
     }
-     
-     public void hienthilentable(){
-         sanphamDAO spDao = new sanphamDAO();
-        listsanpham =  spDao.allsanpham();
-        DefaultTableModel tblsp = (DefaultTableModel)jtblsp.getModel(); 
+
+    public void hienthilentable() {
+        sanphamDAO spDao = new sanphamDAO();
+        listsanpham = spDao.allsanpham();
+        DefaultTableModel tblsp = (DefaultTableModel) jtblsp.getModel();
         tblsp.setRowCount(0);
-        for(san_pham sa : listsanpham){
-         int id=sa.getId();
-         String name=sa.getName();
-         String desc=sa.getDesc();
-         int price = sa.getPrice();
-         int quantity = sa.getQuantity();
-         String nsx=sa.getNameNsxString();
+        for (san_pham sa : listsanpham) {
+            int id = sa.getId();
+            String name = sa.getName();
+            String desc = sa.getDesc();
+            int price = sa.getPrice();
+            int quantity = sa.getQuantity();
+            String nsx = sa.getNameNsxString();
 //         int id=1;
 //         String name="111";
 //         String desc="111";
 //         int price = 111;
 //         int quantity = 1;
 //         String nsx="111";
-         tblsp.addRow(new Object[]{id,name,desc,price,quantity,nsx});
-         }
-  
-     }
-     public void hienthinsx(){
-         sanphamDAO spDao = new sanphamDAO();
-         DefaultComboBoxModel cbonsx= new DefaultComboBoxModel();
+            tblsp.addRow(new Object[]{id, name, desc, price, quantity, nsx});
+        }
 
-         listsanpham = spDao.allsanpham();
+    }
+
+    public void hienthinsx() {
+        sanphamDAO spDao = new sanphamDAO();
+        DefaultComboBoxModel cbonsx = new DefaultComboBoxModel();
+
+        listsanpham = spDao.allsanpham();
 //         for(int i =0 ; i <= listsanpham.size(); i++)
 //         {
 //             cbonsx.addElement(sp);
 //         }
-for(san_pham sp : listsanpham){
-    cbonsx.addElement(sp.getNameNsxString());
-}
-     this.cbonsx.setModel(cbonsx);
-     }
+        for (san_pham sp : listsanpham) {
+            cbonsx.addElement(sp.getNameNsxString());
+        }
+        this.cbonsx.setModel(cbonsx);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,9 +160,17 @@ for(san_pham sp : listsanpham){
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+                "ID", "NAME", "DESCRIPTION", "PRICE", "QUANTITY", "MANUFACTURER"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jtblsp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtblspMouseClicked(evt);
@@ -184,12 +195,9 @@ for(san_pham sp : listsanpham){
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -204,28 +212,26 @@ for(san_pham sp : listsanpham){
                                         .addComponent(jLabel3))
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jdesc)
-                                                .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jButton2)
-                                                    .addComponent(cbonsx, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jButton3))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cbonsx, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jdesc, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(jButton1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 412, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
+                    .addComponent(jLabel6))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,32 +284,32 @@ for(san_pham sp : listsanpham){
         sp.setQuantity(Integer.parseInt(jquantity.getText()));
         nsxDAO nsxdao = new nsxDAO();
         sp.setId_nsx(nsxdao.returnID(cbonsx.getSelectedItem().toString()));
-        
+
         sanphamDAO spsao = new sanphamDAO();
-        if(spsao.luusp(sp)>0){
+        if (spsao.luusp(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "luu thanh cong");
 //            cbonsx.setSelectedItem(sp.getId_nsx());
             hienthilentable();
-        }
-        else   JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
+        } else
+            JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     san_pham sp = new san_pham();
+        san_pham sp = new san_pham();
         sp.setName(jname.getText());
         sp.setDesc(jdesc.getText());
         sp.setPrice(Integer.parseInt(jprice.getText()));
         sp.setQuantity(Integer.parseInt(jquantity.getText()));
         nsxDAO nsxdao = new nsxDAO();
         sp.setId_nsx(nsxdao.returnID(cbonsx.getSelectedItem().toString()));
-        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()) );
+        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()));
         sanphamDAO spsao = new sanphamDAO();
-        if(spsao.update(sp)>0){
+        if (spsao.update(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "luu thanh cong");
 //            cbonsx.setSelectedItem(sp.getId_nsx());
             hienthilentable();
-        }
-        else   JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");        
+        } else
+            JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jquantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jquantityActionPerformed
@@ -313,7 +319,7 @@ for(san_pham sp : listsanpham){
     private void jtblspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblspMouseClicked
         sanphamDAO spDAO = new sanphamDAO();
         listsanpham = spDAO.allsanphambyId(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString());
-        for(san_pham sp : listsanpham){
+        for (san_pham sp : listsanpham) {
             jname.setText(sp.getName());
             jdesc.setText(sp.getDesc());
             jprice.setText(Integer.toString(sp.getPrice()));
@@ -324,13 +330,13 @@ for(san_pham sp : listsanpham){
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         san_pham sp = new san_pham();
-        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()) );
+        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()));
         sanphamDAO spdao = new sanphamDAO();
-        if(spdao.delete(sp)>0){
+        if (spdao.delete(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "da xoa thanh cong");
             hienthilentable();
-        }
-        else JOptionPane.showMessageDialog(rootPane, "xoa khong thanh cong");
+        } else
+            JOptionPane.showMessageDialog(rootPane, "xoa khong thanh cong");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -359,13 +365,15 @@ for(san_pham sp : listsanpham){
             java.util.logging.Logger.getLogger(nhaphang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new nhaphang().setVisible(true);
-             
-            
+                new nhaphang().setVisible(true);
+
             }
         });
     }
