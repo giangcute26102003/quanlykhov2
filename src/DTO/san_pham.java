@@ -9,7 +9,7 @@ package DTO;
  * @author gjang
  */
 public class san_pham {
-    private int id;
+     private int id;
     private String name;
     private String desc;
     private String photo;
@@ -17,9 +17,9 @@ public class san_pham {
     private int quantity;
     private int status;
     private int id_nsx;
-    private String namensx;
+    private String nameNsxString;
 
-    public san_pham(int id, String name, String desc, String photo, int price, int quantity, int status, int id_nsx,String namensx) {
+    public san_pham(int id, String name, String desc, String photo, int price, int quantity, int status, int id_nsx , String nameNsxString) {
         this.id = id;
         this.name = name;
         this.desc = desc;
@@ -28,11 +28,22 @@ public class san_pham {
         this.quantity = quantity;
         this.status = status;
         this.id_nsx = id_nsx;
-        this.namensx=namensx;
+        this.nameNsxString = nameNsxString;
     }
-    public san_pham(){
+
+    public String getNameNsxString() {
+        return nameNsxString;
+    }
+
+    public void setNameNsxString(String nameNsxString) {
+        this.nameNsxString = nameNsxString;
+    }
+
+
+    public san_pham() {
         
     }
+
     public int getId() {
         return id;
     }
@@ -63,10 +74,6 @@ public class san_pham {
 
     public int getId_nsx() {
         return id_nsx;
-    }
-
-    public String getNamensx() {
-        return namensx;
     }
 
     public void setId(int id) {
@@ -100,14 +107,9 @@ public class san_pham {
     public void setId_nsx(int id_nsx) {
         this.id_nsx = id_nsx;
     }
-
-    public void setNamensx(String namensx) {
-        this.namensx = namensx;
-    }
-
+    
     @Override
     public String toString() {
-        return "san_pham{" + "id=" + id + ", name=" + name + ", desc=" + desc + ", photo=" + photo + ", price=" + price + ", quantity=" + quantity + ", status=" + status + ", id_nsx=" + id_nsx + ", namensx=" + namensx + '}';
+        return "san_pham{" + "id=" + id + ", name=" + name + ", desc=" + desc + ", photo=" + photo + ", price=" + price + ", quantity=" + quantity + ", status=" + status + ", id_nsx=" + id_nsx + '}';
     }
-
 }
