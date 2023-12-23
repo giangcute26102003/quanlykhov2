@@ -121,11 +121,11 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Name");
 
         jLabel5.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("User name");
 
         jname.addActionListener(new java.awt.event.ActionListener() {
@@ -184,8 +184,10 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtbluser);
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Phone");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Birth");
 
         jupdateButton.setBackground(new java.awt.Color(255, 255, 102));
@@ -197,6 +199,7 @@ public class quanlynhanvien extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText("Pass");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
