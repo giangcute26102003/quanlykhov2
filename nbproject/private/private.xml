@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DTO/hoadon.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/themnhanvien.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/change_pass.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DAO/nsxDAO.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DAO/khachhangDAO.java</file>
@@ -11,11 +12,16 @@
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DTO/nha_san_xuat.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/tonkho.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DTO/user.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/info_login.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/themnsx.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DAO/sanphamDAO.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/sanpham_detail.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DTO/san_pham.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/dangnhap.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/nhaphang.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/giaodienchinh.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DAO/userDAO.java</file>
+            <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/quanlynhanvien.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/DAO/hoadonDAO.java</file>
             <file>file:/D:/project_netbeans/quanlykhov2/quanlykhov2/src/GUI/export_pdf.java</file>
         </group>

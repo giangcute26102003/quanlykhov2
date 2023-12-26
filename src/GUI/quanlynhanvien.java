@@ -23,38 +23,31 @@ public class quanlynhanvien extends javax.swing.JFrame {
      */
     public int idnv;
     ArrayList<user> listuser = new ArrayList<user>();
-
-    public quanlynhanvien() {
-
+    public quanlynhanvien(){
     }
-
-    public quanlynhanvien(int idnv) {
+    public quanlynhanvien(int idnv){
         this.idnv = idnv;
         initComponents();
         hienthilentable();
         showcbobox();
     }
-
-    public void hienthilentable() {
-        userDAO list = new userDAO();
-        user checkadmin = new user();
+    userDAO list = new userDAO();
+    user checkadmin = new user();
+    public void hienthilentable(){
         
         checkadmin = list.loginbyid(String.valueOf(idnv));
-        listuser = list.alluser();
-        DefaultTableModel tbluser = (DefaultTableModel) jtbluser.getModel();
+        listuser =list.alluser();
+        DefaultTableModel tbluser = (DefaultTableModel)jtbluser.getModel(); 
         tbluser.setRowCount(0);
-        for (user usr : listuser) {
-            int id = usr.getId();
-            String name = usr.getName();
-            String username = usr.getUser_name();
-            String pass = usr.getPw();
-            String phone = usr.getPhone();
-            String birth = usr.getBirth();
-            int level = usr.getLevel();
-            String level_name;
+        for(user usr : listuser){
+         int id=usr.getId();
+         String name=usr.getName();
+         String username=usr.getUser_name();
+         int level = usr.getLevel();
+         String level_name;
             switch (level) {
                 case 1:
-                    level_name = "Giam doc";
+                   level_name = "Giam doc";
                     break;
                 case 2:
                     level_name = "Quan ly";
@@ -65,12 +58,11 @@ public class quanlynhanvien extends javax.swing.JFrame {
                 default:
                     level_name = "Nhan vien";
             }
-            tbluser.addRow(new Object[]{id, name, username, pass, phone, birth, level_name});
+        tbluser.addRow(new Object[]{id,name,username,level_name});
         }
-
-    }
-
-    public void showcbobox() {
+  
+     }
+    public void showcbobox(){
         cbonv.addItem("Giam doc");
         cbonv.addItem("Quan ly");
         cbonv.addItem("Nhan Vien");
@@ -85,7 +77,6 @@ public class quanlynhanvien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jdelete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -98,20 +89,12 @@ public class quanlynhanvien extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbluser = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jphone = new javax.swing.JTextField();
-        jbirth = new javax.swing.JTextField();
-        jupdateButton = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jpass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 044650.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-25 100631.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Screenshot 2023-12-13 004833.png"))); // NOI18N
-
-        jdelete.setBackground(new java.awt.Color(255, 51, 51));
+        jdelete.setBackground(new java.awt.Color(255, 102, 102));
         jdelete.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
         jdelete.setText("Delete");
         jdelete.addActionListener(new java.awt.event.ActionListener() {
@@ -121,12 +104,12 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel1.setText("Name");
 
         jLabel5.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText("User name");
+        jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        jLabel5.setText("user name");
 
         jname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +124,7 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jButton1.setText("New Employee");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,19 +139,19 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
 
         jLabel7.setBackground(new java.awt.Color(255, 153, 51));
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel7.setText("Level");
+        jLabel7.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        jLabel7.setText("level");
 
         jtbluser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NAME", "USER", "PHONE", "BIRTH", "LEVEL"
+                "ID", "NAME", "USER", "LEVEL"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -184,131 +167,93 @@ public class quanlynhanvien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtbluser);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("Phone");
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Birth");
-
-        jupdateButton.setBackground(new java.awt.Color(255, 255, 102));
-        jupdateButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jupdateButton.setText("Update");
-        jupdateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jupdateButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel8.setText("Pass");
+        jLabel3.setFont(new java.awt.Font("Stencil", 2, 24)); // NOI18N
+        jLabel3.setText("Employee manager");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(219, 219, 219)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(juser))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(68, 68, 68))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(54, 54, 54))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(82, 82, 82)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jname, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                        .addComponent(jphone)
-                                        .addComponent(jbirth)
-                                        .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jpass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jupdateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(25, 25, 25)
-                        .addComponent(jdelete, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(212, 212, 212)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                                        .addComponent(jname)
+                                        .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jdelete)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbirth))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                                .addGap(3, 3, 3)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jupdateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jdelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(cbonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jdelete)
+                            .addComponent(jButton1))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdeleteActionPerformed
-
-        user checkadmin = new user();
-        if (checkadmin.getLevel() > 1) {
-            JOptionPane.showMessageDialog(rootPane, "you aren't admin");
-        } else {
-            userDAO deluser = new userDAO();
-            user del = new user();
-            del.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
-            if (deluser.deleteUser(del) > 0) {
-                JOptionPane.showMessageDialog(rootPane, "thanh cong");
-                hienthilentable();
-            }
-        }
+     if(checkadmin.getLevel()>1){
+         JOptionPane.showMessageDialog(rootPane, "you aren't admin");
+     }
+     else {
+     userDAO deluser = new userDAO();
+     user del = new  user();
+     del.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
+     if(deluser.deleteUser(del)>0){
+         JOptionPane.showMessageDialog(rootPane, "thanh cong");
+         hienthilentable();
+     }
+     }
     }//GEN-LAST:event_jdeleteActionPerformed
 
     private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
@@ -319,58 +264,27 @@ public class quanlynhanvien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_juserActionPerformed
 
-    private void jbirthActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
-    private void jphoneActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        themnhanvien themnv = new themnhanvien();
-        themnv.setVisible(true);
-        themnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       themnhanvien themnv = new themnhanvien();
+       themnv.setVisible(true);
+       themnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbonvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbonvActionPerformed
-
+       
     }//GEN-LAST:event_cbonvActionPerformed
 
     private void jtbluserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbluserMouseClicked
-        userDAO userclick = new userDAO();
-        listuser = userclick.alluserbyId(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString());
-        for (user click : listuser) {
-            jname.setText(click.getName());
-            juser.setText(click.getUser_name());
-            jpass.setText(click.getPw());
-            jphone.setText(click.getPhone());
-            jbirth.setText(click.getBirth());
-            cbonv.setSelectedIndex(click.getLevel() - 1);
-        }
-
+       userDAO userclick = new userDAO();
+       listuser = userclick.alluserbyId(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString());
+       for(user click : listuser){
+          jname.setText(click.getName());
+          juser.setText(click.getUser_name());
+          cbonv.setSelectedIndex(click.getLevel()-1);
+       }
+       
     }//GEN-LAST:event_jtbluserMouseClicked
-
-    private void jupdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdateButtonActionPerformed
-        user us = new user();
-        us.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
-        us.setName(jname.getText());
-        us.setUser_name(juser.getText());
-        us.setPw(jpass.getText());
-        us.setPhone(jphone.getText());
-        us.setBirth(jbirth.getText());
-        us.setLevel(cbonv.getSelectedIndex() + 1);
-
-        userDAO usd = new userDAO();
-        if (usd.updatetUser(us) > 0) {
-            JOptionPane.showMessageDialog(rootPane, "luu thanh cong");
-            hienthilentable();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
-        }
-
-    }//GEN-LAST:event_jupdateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,8 +313,6 @@ public class quanlynhanvien extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -414,21 +326,14 @@ public class quanlynhanvien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbonv;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jbirth;
     private javax.swing.JButton jdelete;
     private javax.swing.JTextField jname;
-    private javax.swing.JTextField jpass;
-    private javax.swing.JTextField jphone;
     private javax.swing.JTable jtbluser;
-    private javax.swing.JButton jupdateButton;
     private javax.swing.JTextField juser;
     // End of variables declaration//GEN-END:variables
 }

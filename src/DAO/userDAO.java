@@ -55,7 +55,7 @@ public class userDAO extends connect {
                 nd.setName(rs.getString("name"));
                 nd.setUser_name(rs.getString("user_name"));
                 nd.setPw(rs.getString("pw"));
-                nd.setBirth(rs.getString("birth"));
+                nd.setBirth(rs.getDate("birth").toString());
                 nd.setPhone(rs.getString("phone"));
                 nd.setLevel(rs.getInt("level"));
                 nd.setStatus(rs.getInt("status"));
@@ -104,7 +104,7 @@ public class userDAO extends connect {
                 nd.setUser_name(rs.getString("user_name"));
                 nd.setPw(rs.getString("pw"));
                 nd.setBirth(rs.getString("birth"));
-                nd.setPhone(rs.getString("phone"));
+                nd.setBirth(rs.getString("phone"));
                 nd.setLevel(rs.getInt("level"));
                 nd.setStatus(rs.getInt("status"));
                 listuser.add(nd);

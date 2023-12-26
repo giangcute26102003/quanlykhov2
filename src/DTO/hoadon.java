@@ -4,21 +4,42 @@
  */
 package DTO;
 
+import java.security.Timestamp;
+
 /**
  *
- * @author nguye
+ * @author gjang
  */
 public class hoadon {
-    private int id;
+     private int id;
     private int id_kh;
     private int id_sp;
+    private  String namesp;
+    private  String namekhachang;
     private int quantity;
     private int total;
     private int status;
     private String name;
     private int price;
 
-    public hoadon(int id, int id_kh, int id_sp, int quantity, int total, int status, String name, int price) {
+    public String getNamesp() {
+        return namesp;
+    }
+
+    public void setNamesp(String namesp) {
+        this.namesp = namesp;
+    }
+
+    public String getNamkhachang() {
+        return namekhachang;
+    }
+
+    public void setNamkhachang(String namkhachang) {
+        this.namekhachang = namkhachang;
+    }
+    private String create_at;
+
+    public hoadon(int id, int id_kh, int id_sp, int quantity, int total, int status, String name, int price , String create_at , String namesp, String namkhachang) {
         this.id = id;
         this.id_kh = id_kh;
         this.id_sp = id_sp;
@@ -27,6 +48,23 @@ public class hoadon {
         this.status = status;
         this.name = name;
         this.price = price;
+        this.create_at = create_at;
+        this.namesp = namesp;
+        this.namekhachang = namkhachang;
+    }
+
+   
+
+    public hoadon(String create_at) {
+        this.create_at = create_at;
+    }
+
+    public String getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(String create_at) {
+        this.create_at = create_at;
     }
 
     public int getId() {
@@ -97,9 +135,9 @@ public class hoadon {
     public String toString() {
         return "hoadon{" + "id=" + id + ", id_kh=" + id_kh + ", id_sp=" + id_sp + ", quantity=" + quantity + ", total=" + total + ", status=" + status + ", name=" + name + ", price=" + price + '}';
     }
-   
+
 
     public hoadon(){
-        
+
     }
 }

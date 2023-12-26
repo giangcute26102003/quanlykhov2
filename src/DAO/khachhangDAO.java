@@ -3,19 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
- import DTO.khachhang;
+
+import DTO.khachhang;
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
- * @author nguye
+ * @author gjang
  */
 public class khachhangDAO extends connect{
     ArrayList<khachhang> listkhachhang=new ArrayList<khachhang>();
-    
+
     public ArrayList<khachhang> allkhachhang(){
         try {
             String sql = "select id, name, phone ,address from khachhang  ";
@@ -28,38 +29,58 @@ public class khachhangDAO extends connect{
                 kh.setName(rs.getString("name"));
                 kh.setPhone(rs.getString("phone"));
                 kh.setAddress(rs.getString("address"));
-                
+
                 listkhachhang.add(kh);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return listkhachhang;
     }
-    
-    public ArrayList<khachhang> allkhachhangbyid(String id){
+
+    public int allkhachhangbyname(String name){
+        khachhang kh= new khachhang();
+        int i = 0;
         try {
-            String sql = "select id, name, phone ,address from khachhang where id = "+id;
+            String sql = "select id, name, phone ,address from khachhang where name = "+name+"limit 1";
 
             PreparedStatement pre = con.prepareStatement(sql);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                khachhang kh=new khachhang();
+
                 kh.setId(rs.getInt("id"));
                 kh.setName(rs.getString("name"));
                 kh.setPhone(rs.getString("phone"));
                 kh.setAddress(rs.getString("address"));
                 
-                listkhachhang.add(kh);
+                i= rs.getInt("id");
+
+                
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            
         }
-        
-        return listkhachhang;
+
+        return i;
     }
-    
+     public int newkh(){
+        khachhang kh= new khachhang();
+        int i = 0;
+        try {
+            String sql = "select MAX(id) from khachhang ";
+
+            PreparedStatement pre = con.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            while (rs.next()) {           
+                i= rs.getInt(1); 
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return i;
+    }
+
     public int insertkhachhang(khachhang kh){
         String sql = "Insert into khachhang(`name`, `phone` ,`address`) Values(?,?,?)";
         try{
@@ -68,12 +89,11 @@ public class khachhangDAO extends connect{
             pre.setString(1, kh.getName());
             pre.setString(2, kh.getPhone());
             pre.setString(3,kh.getAddress());
-            
+
             return pre.executeUpdate();
         }catch (SQLException ex) {
             ex.printStackTrace();
         }
         return -1;
     }
-    
 }

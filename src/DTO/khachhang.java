@@ -6,7 +6,7 @@ package DTO;
 
 /**
  *
- * @author nguye
+ * @author gjang
  */
 public class khachhang {
     private int id;
@@ -57,8 +57,8 @@ public class khachhang {
     public String toString() {
         return "khachhang{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + '}';
     }
-    
+
     public khachhang(){
-        
+
     }
 }
