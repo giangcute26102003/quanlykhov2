@@ -7,7 +7,6 @@ package DAO;
 import DTO.user;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +35,7 @@ public class userDAO extends connect {
 //                nd.setLevel(rs.getInt("level"));
 //                nd.setStatus(rs.getInt("status"));
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return nd;
@@ -56,12 +55,12 @@ public class userDAO extends connect {
                 nd.setName(rs.getString("name"));
                 nd.setUser_name(rs.getString("user_name"));
                 nd.setPw(rs.getString("pw"));
-                nd.setBirth(rs.getString("birth"));
-                nd.setPhone(rs.getString("phone")); 
+                nd.setBirth(rs.getDate("birth").toString());
+                nd.setPhone(rs.getString("phone"));
                 nd.setLevel(rs.getInt("level"));
                 nd.setStatus(rs.getInt("status"));
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return nd;
@@ -79,13 +78,13 @@ public class userDAO extends connect {
                 nd.setName(rs.getString("name"));
                 nd.setUser_name(rs.getString("user_name"));
                 nd.setPw(rs.getString("pw"));
-                nd.setPhone(rs.getString("phone"));
                 nd.setBirth(rs.getString("birth"));
+                nd.setPhone(rs.getString("phone"));
                 nd.setLevel(rs.getInt("level"));
                 nd.setStatus(rs.getInt("status"));
                 listuser.add(nd);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return listuser;
@@ -105,12 +104,12 @@ public class userDAO extends connect {
                 nd.setUser_name(rs.getString("user_name"));
                 nd.setPw(rs.getString("pw"));
                 nd.setBirth(rs.getString("birth"));
-                nd.setPhone(rs.getString("phone"));
+                nd.setBirth(rs.getString("phone"));
                 nd.setLevel(rs.getInt("level"));
                 nd.setStatus(rs.getInt("status"));
                 listuser.add(nd);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return listuser;
@@ -129,7 +128,7 @@ public class userDAO extends connect {
             pre.setInt(6, us.getLevel());
 
             return pre.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -149,7 +148,7 @@ public class userDAO extends connect {
             pre.setInt(7, us.getId());
 
             return pre.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -164,7 +163,7 @@ public class userDAO extends connect {
             pre.setInt(2, us.getId());
 
             return pre.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
@@ -178,7 +177,7 @@ public class userDAO extends connect {
             pre.setInt(1, us.getId());
 
             return pre.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return -1;
