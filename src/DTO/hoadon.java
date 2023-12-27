@@ -21,6 +21,7 @@ public class hoadon {
     private int status;
     private String name;
     private int price;
+    private String create_at;
 
     public String getNamesp() {
         return namesp;
@@ -37,7 +38,7 @@ public class hoadon {
     public void setNamkhachang(String namkhachang) {
         this.namekhachang = namkhachang;
     }
-    private String create_at;
+    
 
     public hoadon(int id, int id_kh, int id_sp, int quantity, int total, int status, String name, int price , String create_at , String namesp, String namkhachang) {
         this.id = id;
