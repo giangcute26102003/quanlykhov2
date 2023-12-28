@@ -21,45 +21,44 @@ import javax.swing.table.DefaultTableModel;
 public class themnsx extends javax.swing.JFrame {
 
     /**
-     * Creates new form 
+     * Creates new form
      */
-    
-     
-     
-     ArrayList<nha_san_xuat> listnhasanxuat = new ArrayList<nha_san_xuat>();
+    ArrayList<nha_san_xuat> listnhasanxuat = new ArrayList<nha_san_xuat>();
+
     public themnsx() {
         initComponents();
         showlist();
-        
-    } 
-    
-    public void showlist(){
-    
-       nsxDAO nsxdao = new nsxDAO();
+
+    }
+
+    public void showlist() {
+
+        nsxDAO nsxdao = new nsxDAO();
 //     Vector<nha_san_xuat> listnsx = nsxdao.allnsx();
 //        jListnsx.setListData(listnsx);
-       listnhasanxuat= nsxdao.allnsx();
-       DefaultTableModel tblnsx = (DefaultTableModel)jtblnsx.getModel();
-       tblnsx.setRowCount(0);
-       for(nha_san_xuat nsx : listnhasanxuat){
-           int id = nsx.getId();
-           String name = nsx.getName();
-           String email = nsx.getEmail();
-           String address = nsx.getAddress();
-           String phone = nsx.getPhone();
-           tblnsx.addRow(new Object[]{id,name,address,email,phone});
-       }
-       
+        listnhasanxuat = nsxdao.allnsx();
+        DefaultTableModel tblnsx = (DefaultTableModel) jtblnsx.getModel();
+        tblnsx.setRowCount(0);
+        for (nha_san_xuat nsx : listnhasanxuat) {
+            int id = nsx.getId();
+            String name = nsx.getName();
+            String email = nsx.getEmail();
+            String address = nsx.getAddress();
+            String phone = nsx.getPhone();
+            tblnsx.addRow(new Object[]{id, name, address, email, phone});
+        }
+
     }
-       
-    public void returnNULL(String rong){
+
+    public void returnNULL(String rong) {
         rong = "";
         jname.setText(rong);
         jemail.setText(rong);
         jphone.setText(rong);
         jaddress.setText(rong);
-    
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,16 +259,17 @@ public class themnsx extends javax.swing.JFrame {
         nsx.setAddress(jaddress.getText());
         nsx.setPhone(jphone.getText());
         nsx.setEmail(jemail.getText());
-        
+
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.luusp(nsx)>0){
+
+        if (nsxdao.luusp(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
-         showlist();
-            
+            showlist();
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdateActionPerformed
@@ -280,15 +280,16 @@ public class themnsx extends javax.swing.JFrame {
         nsx.setEmail(jemail.getText());
         nsx.setId(Integer.parseInt(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString()));
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.update(nsx)>0){
+
+        if (nsxdao.update(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
-            
+
             returnNULL("");
             showlist();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
-        
+
     }//GEN-LAST:event_jupdateActionPerformed
 
     private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
@@ -300,14 +301,15 @@ public class themnsx extends javax.swing.JFrame {
         nha_san_xuat nsx = new nha_san_xuat();
         nsx.setId(Integer.parseInt(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString()));
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.delete(nsx)>0){
+
+        if (nsxdao.delete(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
             showlist();
             returnNULL("");
-            
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
     }//GEN-LAST:event_jdeleteActionPerformed
 
     private void jemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jemailActionPerformed
@@ -319,7 +321,7 @@ public class themnsx extends javax.swing.JFrame {
         nsxDAO nsxdao = new nsxDAO();
         listnhasanxuat.clear();
         listnhasanxuat = nsxdao.allnsxbyId(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString());
-        for(nha_san_xuat nsx : listnhasanxuat){
+        for (nha_san_xuat nsx : listnhasanxuat) {
             jname.setText(nsx.getName());
             jaddress.setText(nsx.getAddress());
             jemail.setText(nsx.getEmail());

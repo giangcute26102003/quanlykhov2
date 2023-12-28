@@ -334,7 +334,7 @@ public class quanlynhanvien extends javax.swing.JFrame {
             jpass.setText(click.getPw());
             jphone.setText(click.getPhone());
             jbirth.setText(click.getBirth());
-            cbonv.setSelectedIndex(click.getLevel()-1);
+            cbonv.setSelectedIndex(click.getLevel() - 1);
         }
 
     }//GEN-LAST:event_jtbluserMouseClicked
@@ -346,7 +346,7 @@ public class quanlynhanvien extends javax.swing.JFrame {
         us.setPw(jpass.getText());
         us.setPhone(jphone.getText());
         us.setBirth(jbirth.getText());
-        us.setLevel(cbonv.getSelectedIndex()+1);
+        us.setLevel(cbonv.getSelectedIndex() + 1);
         us.setId(Integer.parseInt(jtbluser.getValueAt(jtbluser.getSelectedRow(), 0).toString()));
 
         userDAO ud = new userDAO();

@@ -28,55 +28,59 @@ public class xuathang extends javax.swing.JFrame {
      * Creates new form nhaphang
      */
     public int idnv;
-    ArrayList<san_pham> listsanpham = new ArrayList<san_pham>(); 
+    ArrayList<san_pham> listsanpham = new ArrayList<san_pham>();
     String search = "";
+
     public xuathang(int idnv) {
-        this.idnv= idnv;
+        this.idnv = idnv;
         initComponents();
         hienthilentable();
         hienthinsx();
     }
-    public xuathang(){}
-    
-     
-     public void hienthilentable(){
-        
-         search = jsearch.getText();
-         sanphamDAO spDao = new sanphamDAO();
-        listsanpham =  spDao.allsanpham(search);
-        DefaultTableModel tblsp = (DefaultTableModel)jtblsp.getModel(); 
+
+    public xuathang() {
+    }
+
+    public void hienthilentable() {
+
+        search = jsearch.getText();
+        sanphamDAO spDao = new sanphamDAO();
+        listsanpham = spDao.allsanpham(search);
+        DefaultTableModel tblsp = (DefaultTableModel) jtblsp.getModel();
         tblsp.setRowCount(0);
-        for(san_pham sa : listsanpham){
-         int id=sa.getId();
-         String name=sa.getName();
-         String desc=sa.getDesc();
-         int price = sa.getPrice();
-         int quantity = sa.getQuantity();
-         String nsx=sa.getNameNsxString();
+        for (san_pham sa : listsanpham) {
+            int id = sa.getId();
+            String name = sa.getName();
+            String desc = sa.getDesc();
+            int price = sa.getPrice();
+            int quantity = sa.getQuantity();
+            String nsx = sa.getNameNsxString();
 //         int id=1;
 //         String name="111";
 //         String desc="111";
 //         int price = 111;
 //         int quantity = 1;
 //         String nsx="111";
-         tblsp.addRow(new Object[]{id,name,desc,price,quantity,nsx});
-         }
-  
-     }
-     public void hienthinsx(){
-         sanphamDAO spDao = new sanphamDAO();
-         DefaultComboBoxModel cbonsx= new DefaultComboBoxModel();
+            tblsp.addRow(new Object[]{id, name, desc, price, quantity, nsx});
+        }
 
-         listsanpham = spDao.allsanpham(search);
+    }
+
+    public void hienthinsx() {
+        sanphamDAO spDao = new sanphamDAO();
+        DefaultComboBoxModel cbonsx = new DefaultComboBoxModel();
+
+        listsanpham = spDao.allsanpham(search);
 //         for(int i =0 ; i <= listsanpham.size(); i++)
 //         {
 //             cbonsx.addElement(sp);
 //         }
-for(san_pham sp : listsanpham){
-    cbonsx.addElement(sp.getNameNsxString());
-}
-     this.cbonsx.setModel(cbonsx);
-     }
+        for (san_pham sp : listsanpham) {
+            cbonsx.addElement(sp.getNameNsxString());
+        }
+        this.cbonsx.setModel(cbonsx);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -338,7 +342,7 @@ for(san_pham sp : listsanpham){
     private void jtblspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblspMouseClicked
         sanphamDAO spDAO = new sanphamDAO();
         listsanpham = spDAO.allsanphambyId(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString());
-        for(san_pham sp : listsanpham){
+        for (san_pham sp : listsanpham) {
             jname.setText(sp.getName());
             jdesc.setText(sp.getDesc());
             jprice.setText(Integer.toString(sp.getPrice()));
@@ -366,44 +370,40 @@ for(san_pham sp : listsanpham){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       int soluong = (int) jsoluongxuatkho.getValue();
-       int soluong_thucte = Integer.parseInt(jquantity.getText());
-       if(soluong == 0 ){
-           JOptionPane.showMessageDialog(rootPane, "Vui long nhap so luong xuat hang !");
-       }
-       else if(soluong_thucte<soluong){
+        int soluong = (int) jsoluongxuatkho.getValue();
+        int soluong_thucte = Integer.parseInt(jquantity.getText());
+        if (soluong == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Vui long nhap so luong xuat hang !");
+        } else if (soluong_thucte < soluong) {
             JOptionPane.showMessageDialog(rootPane, "so luong ton kho khong du !");
-       }
-       else {
-            int confirm = JOptionPane.showConfirmDialog(rootPane, "you are sure ?");
-            if(confirm == 0){
-            sanphamDAO xuatkho = new sanphamDAO();
-            san_pham xuat = new san_pham();
-               
-                    int soluongconlai = soluong_thucte-soluong;
+        } else {
+            khachhang newkhachhang = new khachhang();
+            if (jnamekh.getText().equals("") || jphone.getText().equals("") || jnamekh.getText().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "nhap day du thong tin khach hang");
+            } else {
+                int confirm = JOptionPane.showConfirmDialog(rootPane, "you are sure ?");
+                if (confirm == 0) {
+                    sanphamDAO xuatkho = new sanphamDAO();
+                    san_pham xuat = new san_pham();
+
+                    int soluongconlai = soluong_thucte - soluong;
                     xuat.setQuantity(soluongconlai);
                     xuat.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()));
                     xuatkho.xuatkho(xuat);
-                    
-                    
-                     khachhang newkhachhang = new khachhang();
-        if(jnamekh.getText().equals("")||jphone.getText().equals("")||jnamekh.getText().equals(""))
-        JOptionPane.showMessageDialog(rootPane, "nhap day du thong tin khach hang");
-        else {
-            newkhachhang.setName(jnamekh.getText());
-            newkhachhang.setPhone(jphone.getText());
-            newkhachhang.setAddress(jaddress.getText());
-            khachhangDAO checkkh = new khachhangDAO();
-            if(checkkh.insertkhachhang(newkhachhang)>0){
-            phieuxuatkhov11 psk1 = new phieuxuatkhov11(idnv,Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()),Integer.parseInt(jsoluongxuatkho.getValue().toString()),newkhachhang);
-            psk1.setVisible(true);
-            psk1.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            psk1.setLocationRelativeTo(null);
-            hienthilentable();
+                    newkhachhang.setName(jnamekh.getText());
+                    newkhachhang.setPhone(jphone.getText());
+                    newkhachhang.setAddress(jaddress.getText());
+                    khachhangDAO checkkh = new khachhangDAO();
+                    if (checkkh.insertkhachhang(newkhachhang) > 0) {
+                        phieuxuatkhov11 psk1 = new phieuxuatkhov11(idnv, Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()), Integer.parseInt(jsoluongxuatkho.getValue().toString()), newkhachhang);
+                        psk1.setVisible(true);
+                        psk1.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                        psk1.setLocationRelativeTo(null);
+                        hienthilentable();
+                    }
+                }
             }
-            }
-       }
-       }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jaddressActionPerformed
@@ -441,9 +441,8 @@ for(san_pham sp : listsanpham){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new xuathang().setVisible(true);
-             
-            
+                new xuathang().setVisible(true);
+
             }
         });
     }

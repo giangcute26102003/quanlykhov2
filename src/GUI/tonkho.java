@@ -34,11 +34,11 @@ public class tonkho extends javax.swing.JFrame {
         hienthilentable();
 
     }
-    
-     public void hienthilentable(){
-         sanphamDAO spDao = new sanphamDAO();
-        listsanpham =  spDao.allsanpham("");
-        DefaultTableModel tblsp = (DefaultTableModel)listsp.getModel(); 
+
+    public void hienthilentable() {
+        sanphamDAO spDao = new sanphamDAO();
+        listsanpham = spDao.allsanpham("");
+        DefaultTableModel tblsp = (DefaultTableModel) listsp.getModel();
         tblsp.setRowCount(0);
         for (san_pham sa : listsanpham) {
             int id = sa.getId();

@@ -19,15 +19,14 @@ public class dangnhap extends javax.swing.JFrame {
     /**
      * Creates new form dangnhap
      */
-     userDAO nd = new userDAO();
-     user nd1 = new user();
-     
+    userDAO nd = new userDAO();
+    user nd1 = new user();
+    
     public dangnhap() {
         initComponents();
         
-        
     }
-       
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -144,41 +143,37 @@ public class dangnhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jloginActionPerformed
-        nd1=nd.dangnhap(jusername.getText(),jpassword.getText());
-        if(nd1== null)
-        {
+        nd1 = nd.dangnhap(jusername.getText(), jpassword.getText());
+        if (nd1 == null) {
             JOptionPane.showMessageDialog(null, "dang nhap that bai");
-
-        }
-        else
-        {  JOptionPane.showMessageDialog(null, "dang nhap thanh cong");
-            giaodienchinh gdc =     new  giaodienchinh(nd1.getId());
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "dang nhap thanh cong");
+            giaodienchinh gdc = new giaodienchinh(nd1.getId());
             gdc.setLocationRelativeTo(null);
             gdc.setVisible(true);
-
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jloginActionPerformed
-
+    
     private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpasswordActionPerformed
-        
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-       
-       
-        /* Create and display the form */
+
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {               
-                 dangnhap dn = new dangnhap();      
-                 dn.setVisible(true);
-                 dn.setLocationRelativeTo(null);
-                 dn.setTitle("Login");
-               
+            public void run() {
+                dangnhap dn = new dangnhap();
+                dn.setVisible(true);
+                dn.setLocationRelativeTo(null);
+                dn.setTitle("Login");
+                
             }
         });
     }

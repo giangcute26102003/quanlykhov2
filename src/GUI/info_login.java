@@ -17,48 +17,44 @@ public class info_login extends javax.swing.JFrame {
     /**
      * Creates new form info_login
      */
-   public int idnv;
+    public int idnv;
     userDAO infouser = new userDAO();
-     user newuser = new  user(); 
+    user newuser = new user();
+
     public info_login(int idnv) {
         this.idnv = idnv;
         initComponents();
         showinfo();
     }
-      public info_login() {
+
+    public info_login() {
 
     }
 
-    
-    
-    
     public void showinfo() {
-       newuser = infouser.loginbyid(String.valueOf(idnv)); 
+        newuser = infouser.loginbyid(String.valueOf(idnv));
         jname.setText(newuser.getName());
         juser.setText(newuser.getUser_name());
         jbirth.setText(newuser.getBirth());
         jphone.setText(newuser.getPhone());
         int level = newuser.getLevel();
-         String level_name = "";
-            switch (level) {
-                case 1:
-                   level_name = "Giam doc";
-                    break;
-                case 2:
-                    level_name = "Quan ly";
-                    break;
-                case 3:
-                    level_name = "Nhan vien";
-                    break;
-                default:
-                    level_name = "Nhan vien";
-            }
+        String level_name = "";
+        switch (level) {
+            case 1:
+                level_name = "Giam doc";
+                break;
+            case 2:
+                level_name = "Quan ly";
+                break;
+            case 3:
+                level_name = "Nhan vien";
+                break;
+            default:
+                level_name = "Nhan vien";
+        }
         jlevel.setText(level_name);
-        
-        
-        
+
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.

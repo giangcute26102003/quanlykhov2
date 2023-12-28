@@ -20,16 +20,18 @@ public class themnhanvien extends javax.swing.JFrame {
      */
     ArrayList<user> listuser = new ArrayList<user>();
 
-    public themnhanvien()  {
+    public themnhanvien() {
         initComponents();
         showcbobox();
     }
-  public void showcbobox(){
+
+    public void showcbobox() {
 
         cbonv.addItem("Giam doc");
         cbonv.addItem("Quan ly");
         cbonv.addItem("Nhan Vien");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,24 +205,25 @@ public class themnhanvien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      userDAO  newuser = new userDAO();
-      user us = new user();
-          us.setName(jname.getText());
-          us.setPw(jpass.getText());
-          us.setUser_name(juser.getText());
-          us.setBirth(jbirth.getText());
-          us.setBirth(jbirth.getText());
-          us.setPhone(jphone.getText());
-          us.setLevel(cbonv.getSelectedIndex()+1);
-      if(newuser.insertUser(us)>0){
-          JOptionPane.showMessageDialog(rootPane, "thanh  cong");
-      }
-      else JOptionPane.showMessageDialog(rootPane, "bat cong");
-        
+        userDAO newuser = new userDAO();
+        user us = new user();
+        us.setName(jname.getText());
+        us.setPw(jpass.getText());
+        us.setUser_name(juser.getText());
+        us.setBirth(jbirth.getText());
+        us.setBirth(jbirth.getText());
+        us.setPhone(jphone.getText());
+        us.setLevel(cbonv.getSelectedIndex() + 1);
+        if (newuser.insertUser(us) > 0) {
+            JOptionPane.showMessageDialog(rootPane, "thanh  cong");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "bat cong");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbonvjnsx(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbonvjnsx
-        
+
     }//GEN-LAST:event_cbonvjnsx
 
     private void jbirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbirthActionPerformed

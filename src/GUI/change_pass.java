@@ -20,43 +20,42 @@ public class change_pass extends javax.swing.JFrame {
     public int idnv;
     dangnhap info = new dangnhap();
     userDAO chagepass = new userDAO();
-     user newuser = new user();
-     
+    user newuser = new user();
+
     public change_pass(int idnv) {
         this.idnv = idnv;
         initComponents();
         showinfo();
-        
+
     }
-      public change_pass() {
-       
-        
+
+    public change_pass() {
+
     }
-    
+
     public void showinfo() {
-         newuser = chagepass.loginbyid(String.valueOf(idnv));
+        newuser = chagepass.loginbyid(String.valueOf(idnv));
         jname.setText(newuser.getName());
         juser.setText(newuser.getUser_name());
         jpassold.setText(newuser.getPw());
-        
+
         int level = newuser.getLevel();
-         String level_name = "";
-            switch (level) {
-                case 1:
-                   level_name = "Giam doc";
-                    break;
-                case 2:
-                    level_name = "Quan ly";
-                    break;
-                case 3:
-                    level_name = "Nhan vien";
-                    break;
-                default:
-                    level_name = "Nhan vien";
-            }
+        String level_name = "";
+        switch (level) {
+            case 1:
+                level_name = "Giam doc";
+                break;
+            case 2:
+                level_name = "Quan ly";
+                break;
+            case 3:
+                level_name = "Nhan vien";
+                break;
+            default:
+                level_name = "Nhan vien";
+        }
         jlevel.setText(level_name);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,14 +182,18 @@ public class change_pass extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        if(jpassold.getText().equals(newuser.getPw())  ) {
-          userDAO changepass = new userDAO();
-          newuser.setPw(jpassnew.getText());
-          if(changepass.updatepassUser(newuser)>0) JOptionPane.showMessageDialog(rootPane, "thanh cong"); 
-          else JOptionPane.showMessageDialog(rootPane, "fail");
-        } 
-        else JOptionPane.showMessageDialog(rootPane, "sai pass cu roi");
+
+        if (jpassold.getText().equals(newuser.getPw())) {
+            userDAO changepass = new userDAO();
+            newuser.setPw(jpassnew.getText());
+            if (changepass.updatepassUser(newuser) > 0) {
+                JOptionPane.showMessageDialog(rootPane, "thanh cong");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "fail");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "sai pass cu roi");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
