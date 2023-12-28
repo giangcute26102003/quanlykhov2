@@ -21,10 +21,10 @@ public class dangnhap extends javax.swing.JFrame {
      */
     userDAO nd = new userDAO();
     user nd1 = new user();
-
+    
     public dangnhap() {
         initComponents();
-
+        
     }
 
     /**
@@ -146,16 +146,16 @@ public class dangnhap extends javax.swing.JFrame {
         nd1 = nd.dangnhap(jusername.getText(), jpassword.getText());
         if (nd1 == null) {
             JOptionPane.showMessageDialog(null, "dang nhap that bai");
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "dang nhap thanh cong");
             giaodienchinh gdc = new giaodienchinh(nd1.getId());
             gdc.setLocationRelativeTo(null);
             gdc.setVisible(true);
-
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jloginActionPerformed
-
+    
     private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpasswordActionPerformed
@@ -173,7 +173,7 @@ public class dangnhap extends javax.swing.JFrame {
                 dn.setVisible(true);
                 dn.setLocationRelativeTo(null);
                 dn.setTitle("Login");
-
+                
             }
         });
     }
