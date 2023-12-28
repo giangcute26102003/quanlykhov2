@@ -9,6 +9,7 @@ package DTO;
  * @author gjang
  */
 public class khachhang {
+
     private int id;
     private String name;
     private String phone;
@@ -58,7 +59,7 @@ public class khachhang {
         return "khachhang{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + '}';
     }
 
-    public khachhang(){
+    public khachhang() {
 
     }
 }

@@ -21,45 +21,44 @@ import javax.swing.table.DefaultTableModel;
 public class themnsx extends javax.swing.JFrame {
 
     /**
-     * Creates new form 
+     * Creates new form
      */
-    
-     
-     
-     ArrayList<nha_san_xuat> listnhasanxuat = new ArrayList<nha_san_xuat>();
+    ArrayList<nha_san_xuat> listnhasanxuat = new ArrayList<nha_san_xuat>();
+
     public themnsx() {
         initComponents();
         showlist();
-        
-    } 
-    
-    public void showlist(){
-    
-       nsxDAO nsxdao = new nsxDAO();
+
+    }
+
+    public void showlist() {
+
+        nsxDAO nsxdao = new nsxDAO();
 //     Vector<nha_san_xuat> listnsx = nsxdao.allnsx();
 //        jListnsx.setListData(listnsx);
-       listnhasanxuat= nsxdao.allnsx();
-       DefaultTableModel tblnsx = (DefaultTableModel)jtblnsx.getModel();
-       tblnsx.setRowCount(0);
-       for(nha_san_xuat nsx : listnhasanxuat){
-           int id = nsx.getId();
-           String name = nsx.getName();
-           String email = nsx.getEmail();
-           String address = nsx.getAddress();
-           String phone = nsx.getPhone();
-           tblnsx.addRow(new Object[]{id,name,address,email,phone});
-       }
-       
+        listnhasanxuat = nsxdao.allnsx();
+        DefaultTableModel tblnsx = (DefaultTableModel) jtblnsx.getModel();
+        tblnsx.setRowCount(0);
+        for (nha_san_xuat nsx : listnhasanxuat) {
+            int id = nsx.getId();
+            String name = nsx.getName();
+            String email = nsx.getEmail();
+            String address = nsx.getAddress();
+            String phone = nsx.getPhone();
+            tblnsx.addRow(new Object[]{id, name, address, email, phone});
+        }
+
     }
-       
-    public void returnNULL(String rong){
+
+    public void returnNULL(String rong) {
         rong = "";
         jname.setText(rong);
         jemail.setText(rong);
         jphone.setText(rong);
         jaddress.setText(rong);
-    
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,7 +118,7 @@ public class themnsx extends javax.swing.JFrame {
         });
 
         jLabel4.setBackground(new java.awt.Color(255, 204, 51));
-        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 3, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("List Nha San Xuat");
@@ -185,47 +184,47 @@ public class themnsx extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jphone)
                                     .addComponent(jaddress)
                                     .addComponent(jname)
-                                    .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jupdate)
-                                .addGap(12, 12, 12)
                                 .addComponent(jdelete))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -246,8 +245,9 @@ public class themnsx extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jupdate)
-                            .addComponent(jdelete))))
-                .addGap(18, 18, 18))
+                            .addComponent(jdelete)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -259,16 +259,17 @@ public class themnsx extends javax.swing.JFrame {
         nsx.setAddress(jaddress.getText());
         nsx.setPhone(jphone.getText());
         nsx.setEmail(jemail.getText());
-        
+
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.luusp(nsx)>0){
+
+        if (nsxdao.luusp(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
-         showlist();
-            
+            showlist();
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jupdateActionPerformed
@@ -279,15 +280,16 @@ public class themnsx extends javax.swing.JFrame {
         nsx.setEmail(jemail.getText());
         nsx.setId(Integer.parseInt(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString()));
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.update(nsx)>0){
+
+        if (nsxdao.update(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
-            
+
             returnNULL("");
             showlist();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
-        
+
     }//GEN-LAST:event_jupdateActionPerformed
 
     private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
@@ -299,14 +301,15 @@ public class themnsx extends javax.swing.JFrame {
         nha_san_xuat nsx = new nha_san_xuat();
         nsx.setId(Integer.parseInt(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString()));
         nsxDAO nsxdao = new nsxDAO();
-      
-        if(nsxdao.delete(nsx)>0){
+
+        if (nsxdao.delete(nsx) > 0) {
             JOptionPane.showMessageDialog(rootPane, "thanh cong");
             showlist();
             returnNULL("");
-            
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "that bai");
         }
-        else JOptionPane.showMessageDialog(rootPane, "that bai");
     }//GEN-LAST:event_jdeleteActionPerformed
 
     private void jemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jemailActionPerformed
@@ -318,7 +321,7 @@ public class themnsx extends javax.swing.JFrame {
         nsxDAO nsxdao = new nsxDAO();
         listnhasanxuat.clear();
         listnhasanxuat = nsxdao.allnsxbyId(jtblnsx.getValueAt(jtblnsx.getSelectedRow(), 0).toString());
-        for(nha_san_xuat nsx : listnhasanxuat){
+        for (nha_san_xuat nsx : listnhasanxuat) {
             jname.setText(nsx.getName());
             jaddress.setText(nsx.getAddress());
             jemail.setText(nsx.getEmail());
@@ -351,8 +354,6 @@ public class themnsx extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(themnsx.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

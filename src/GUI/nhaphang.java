@@ -25,55 +25,58 @@ public class nhaphang extends javax.swing.JFrame {
     /**
      * Creates new form nhaphang
      */
-    ArrayList<san_pham> listsanpham = new ArrayList<san_pham>(); 
+    ArrayList<san_pham> listsanpham = new ArrayList<san_pham>();
     String search = "";
+
     public nhaphang() {
         initComponents();
         hienthilentable();
         hienthinsx();
     }
-     
-     public void hienthilentable(){
-        
-         search = jsearch.getText();
-         sanphamDAO spDao = new sanphamDAO();
-        listsanpham =  spDao.allsanpham(search);
-        DefaultTableModel tblsp = (DefaultTableModel)jtblsp.getModel(); 
+
+    public void hienthilentable() {
+
+        search = jsearch.getText();
+        sanphamDAO spDao = new sanphamDAO();
+        listsanpham = spDao.allsanpham(search);
+        DefaultTableModel tblsp = (DefaultTableModel) jtblsp.getModel();
         tblsp.setRowCount(0);
-        for(san_pham sa : listsanpham){
-         int id=sa.getId();
-         String name=sa.getName();
-         String desc=sa.getDesc();
-         int price = sa.getPrice();
-         int quantity = sa.getQuantity();
-         String nsx=sa.getNameNsxString();
+        for (san_pham sa : listsanpham) {
+            int id = sa.getId();
+            String name = sa.getName();
+            String desc = sa.getDesc();
+            int price = sa.getPrice();
+            int quantity = sa.getQuantity();
+            String nsx = sa.getNameNsxString();
 //         int id=1;
 //         String name="111";
 //         String desc="111";
 //         int price = 111;
 //         int quantity = 1;
 //         String nsx="111";
-         tblsp.addRow(new Object[]{id,name,desc,price,quantity,nsx});
-         }
-  
-     }
-     public void hienthinsx(){
-         sanphamDAO spDao = new sanphamDAO();
-         DefaultComboBoxModel cbonsx= new DefaultComboBoxModel();
+            tblsp.addRow(new Object[]{id, name, desc, price, quantity, nsx});
+        }
 
-         listsanpham = spDao.allsanpham(search);
+    }
+
+    public void hienthinsx() {
+        sanphamDAO spDao = new sanphamDAO();
+        DefaultComboBoxModel cbonsx = new DefaultComboBoxModel();
+
+        listsanpham = spDao.allsanpham(search);
 //         for(int i =0 ; i <= listsanpham.size(); i++)
 //         {
 //             cbonsx.addElement(sp);
 //         }
-    ArrayList<nha_san_xuat> allnsx = new ArrayList<>();
-    nsxDAO listnsx = new nsxDAO();
-    allnsx = listnsx.allnsx();
-    for(nha_san_xuat nsx : allnsx){
-    cbonsx.addElement(nsx.getName());
+        ArrayList<nha_san_xuat> allnsx = new ArrayList<>();
+        nsxDAO listnsx = new nsxDAO();
+        allnsx = listnsx.allnsx();
+        for (nha_san_xuat nsx : allnsx) {
+            cbonsx.addElement(nsx.getName());
+        }
+        this.cbonsx.setModel(cbonsx);
     }
-     this.cbonsx.setModel(cbonsx);
-     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +120,7 @@ public class nhaphang extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 153, 51));
         jLabel3.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel3.setText("price");
+        jLabel3.setText("Price");
 
         cbonsx.setForeground(new java.awt.Color(51, 51, 255));
         cbonsx.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +146,7 @@ public class nhaphang extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 204, 204));
         jButton2.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 153, 204));
-        jButton2.setText("update");
+        jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -178,7 +181,7 @@ public class nhaphang extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 153, 204));
-        jButton3.setText("delete");
+        jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -193,8 +196,8 @@ public class nhaphang extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 3, 10)); // NOI18N
-        jButton4.setText("search");
+        jButton4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jButton4.setText("Search");
         jButton4.setMinimumSize(new java.awt.Dimension(56, 57));
         jButton4.setPreferredSize(new java.awt.Dimension(111, 57));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -217,41 +220,33 @@ public class nhaphang extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(9, 9, 9)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jLabel3))
                                             .addComponent(jLabel2)
-                                            .addComponent(jLabel4))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(9, 9, 9)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(jdesc)
-                                                        .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(cbonsx, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(13, 13, 13)
-                                                        .addComponent(jButton2)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(9, 9, 9))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jButton1)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jname, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                            .addComponent(jdesc)
+                                            .addComponent(jprice, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cbonsx, 0, 85, Short.MAX_VALUE)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -282,16 +277,16 @@ public class nhaphang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cbonsx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jsearch)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
         );
 
         pack();
@@ -310,32 +305,34 @@ public class nhaphang extends javax.swing.JFrame {
         sp.setQuantity(Integer.parseInt(jquantity.getText()));
         nsxDAO nsxdao = new nsxDAO();
         sp.setId_nsx(nsxdao.returnID(cbonsx.getSelectedItem().toString()));
-        
+
         sanphamDAO spsao = new sanphamDAO();
-        if(spsao.luusp(sp)>0){
+        if (spsao.luusp(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "luu thanh cong");
 //            cbonsx.setSelectedItem(sp.getId_nsx());
             hienthilentable();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
         }
-        else   JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     san_pham sp = new san_pham();
+        san_pham sp = new san_pham();
         sp.setName(jname.getText());
         sp.setDesc(jdesc.getText());
         sp.setPrice(Integer.parseInt(jprice.getText()));
         sp.setQuantity(Integer.parseInt(jquantity.getText()));
         nsxDAO nsxdao = new nsxDAO();
         sp.setId_nsx(nsxdao.returnID(cbonsx.getSelectedItem().toString()));
-        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()) );
+        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()));
         sanphamDAO spsao = new sanphamDAO();
-        if(spsao.update(sp)>0){
+        if (spsao.update(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "luu thanh cong");
 //            cbonsx.setSelectedItem(sp.getId_nsx());
             hienthilentable();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");
         }
-        else   JOptionPane.showMessageDialog(rootPane, "luu khong thanh cong");        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jquantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jquantityActionPerformed
@@ -345,7 +342,7 @@ public class nhaphang extends javax.swing.JFrame {
     private void jtblspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblspMouseClicked
         sanphamDAO spDAO = new sanphamDAO();
         listsanpham = spDAO.allsanphambyId(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString());
-        for(san_pham sp : listsanpham){
+        for (san_pham sp : listsanpham) {
             jname.setText(sp.getName());
             jdesc.setText(sp.getDesc());
             jprice.setText(Integer.toString(sp.getPrice()));
@@ -356,13 +353,14 @@ public class nhaphang extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         san_pham sp = new san_pham();
-        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()) );
+        sp.setId(Integer.parseInt(jtblsp.getValueAt(jtblsp.getSelectedRow(), 0).toString()));
         sanphamDAO spdao = new sanphamDAO();
-        if(spdao.delete(sp)>0){
+        if (spdao.delete(sp) > 0) {
             JOptionPane.showMessageDialog(rootPane, "da xoa thanh cong");
             hienthilentable();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "xoa khong thanh cong");
         }
-        else JOptionPane.showMessageDialog(rootPane, "xoa khong thanh cong");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsearchActionPerformed
@@ -400,14 +398,12 @@ public class nhaphang extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(nhaphang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               new nhaphang().setVisible(true);
-             
-            
+                new nhaphang().setVisible(true);
+
             }
         });
     }

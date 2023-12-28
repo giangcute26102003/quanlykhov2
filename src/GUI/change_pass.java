@@ -20,43 +20,42 @@ public class change_pass extends javax.swing.JFrame {
     public int idnv;
     dangnhap info = new dangnhap();
     userDAO chagepass = new userDAO();
-     user newuser = new user();
-     
+    user newuser = new user();
+
     public change_pass(int idnv) {
         this.idnv = idnv;
         initComponents();
         showinfo();
-        
+
     }
-      public change_pass() {
-       
-        
+
+    public change_pass() {
+
     }
-    
+
     public void showinfo() {
-         newuser = chagepass.loginbyid(String.valueOf(idnv));
+        newuser = chagepass.loginbyid(String.valueOf(idnv));
         jname.setText(newuser.getName());
         juser.setText(newuser.getUser_name());
         jpassold.setText(newuser.getPw());
-        
+
         int level = newuser.getLevel();
-         String level_name = "";
-            switch (level) {
-                case 1:
-                   level_name = "Giam doc";
-                    break;
-                case 2:
-                    level_name = "Quan ly";
-                    break;
-                case 3:
-                    level_name = "Nhan vien";
-                    break;
-                default:
-                    level_name = "Nhan vien";
-            }
+        String level_name = "";
+        switch (level) {
+            case 1:
+                level_name = "Giam doc";
+                break;
+            case 2:
+                level_name = "Quan ly";
+                break;
+            case 3:
+                level_name = "Nhan vien";
+                break;
+            default:
+                level_name = "Nhan vien";
+        }
         jlevel.setText(level_name);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,6 +101,8 @@ public class change_pass extends javax.swing.JFrame {
         jlevel.setForeground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         jlevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jButton1.setBackground(new java.awt.Color(102, 204, 255));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jButton1.setText("Change");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,16 +124,16 @@ public class change_pass extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlevel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpassnew, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(juser, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpassold, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jname, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(juser)
+                            .addComponent(jpassold)
+                            .addComponent(jpassnew)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jButton1)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addGap(135, 135, 135)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,40 +156,44 @@ public class change_pass extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jpassnew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        if(jpassold.getText().equals(newuser.getPw())  ) {
-          userDAO changepass = new userDAO();
-          newuser.setPw(jpassnew.getText());
-          if(changepass.updatepassUser(newuser)>0) JOptionPane.showMessageDialog(rootPane, "thanh cong"); 
-          else JOptionPane.showMessageDialog(rootPane, "fail");
-        } 
-        else JOptionPane.showMessageDialog(rootPane, "sai pass cu roi");
+
+        if (jpassold.getText().equals(newuser.getPw())) {
+            userDAO changepass = new userDAO();
+            newuser.setPw(jpassnew.getText());
+            if (changepass.updatepassUser(newuser) > 0) {
+                JOptionPane.showMessageDialog(rootPane, "thanh cong");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "fail");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "sai pass cu roi");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -216,8 +221,6 @@ public class change_pass extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(change_pass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

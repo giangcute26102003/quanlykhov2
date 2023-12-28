@@ -9,6 +9,7 @@ package DTO;
  * @author gjang
  */
 public class nha_san_xuat {
+
     private int id;
     private String name;
     private String address;
@@ -24,6 +25,7 @@ public class nha_san_xuat {
         this.phone = phone;
         this.status = status;
     }
+
     public int getId() {
         return id;
     }
@@ -74,10 +76,10 @@ public class nha_san_xuat {
 
     @Override
     public String toString() {
-        return   name ;
+        return name;
     }
 
-    public nha_san_xuat(){
-        
+    public nha_san_xuat() {
+
     }
 }

@@ -18,30 +18,30 @@ public class giaodienchinh extends javax.swing.JFrame {
     /**
      * Creates new form giaodienchinh
      */
-    public  int id ;
-     
-    public  giaodienchinh() {    
-        
+    public int id;
+
+    public giaodienchinh() {
+
     }
-    public giaodienchinh(int id){
+
+    public giaodienchinh(int id) {
         this.id = id;
         initComponents();
         showinfo();
     }
-    
-    
-      userDAO login = new userDAO();
-      user info =new user();
-      
-      
-    public void showinfo(){
-      info = login.loginbyid(String.valueOf(id));
-      cboinfo.addItem("Xin Chao "+info.getName());  
-      cboinfo.addItem("Info");
-      cboinfo.addItem("Change PassWord");
-      cboinfo.addItem("Logout");
-      
+
+    userDAO login = new userDAO();
+    user info = new user();
+
+    public void showinfo() {
+        info = login.loginbyid(String.valueOf(id));
+        cboinfo.addItem("Xin Chao " + info.getName());
+        cboinfo.addItem("Info");
+        cboinfo.addItem("Change PassWord");
+        cboinfo.addItem("Logout");
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,15 +249,15 @@ public class giaodienchinh extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-  
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       Hoadon hd = new Hoadon();
-       hd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       hd.setSize(1000,350);
-       hd.setLocationRelativeTo(null);
-       //hd.pack();
-       hd.setVisible(true);
+        Hoadon hd = new Hoadon();
+        hd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        hd.setSize(1000, 350);
+        hd.setLocationRelativeTo(null);
+        //hd.pack();
+        hd.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -283,13 +283,12 @@ public class giaodienchinh extends javax.swing.JFrame {
     }//GEN-LAST:event_JtonkhoActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-            if(info.getLevel()>2)
+        if (info.getLevel() > 2) {
             JOptionPane.showMessageDialog(rootPane, "you aren't admin ");
-        
-        else {
-        quanlynhanvien qlnv = new quanlynhanvien(info.getId());
-        qlnv.setVisible(true);
-        qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } else {
+            quanlynhanvien qlnv = new quanlynhanvien(info.getId());
+            qlnv.setVisible(true);
+            qlnv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -301,21 +300,21 @@ public class giaodienchinh extends javax.swing.JFrame {
                 logout.setVisible(true);
                 dispose();
                 break;
-            case "Info": 
+            case "Info":
                 info_login ilog = new info_login(id);
                 ilog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 ilog.setLocationRelativeTo(null);
                 ilog.setVisible(true);
-                
+
                 break;
-            case "Change PassWord": 
+            case "Change PassWord":
                 change_pass cpass = new change_pass(id);
                 cpass.setLocationRelativeTo(null);
                 cpass.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 cpass.setVisible(true);
-                break;    
+                break;
             default:
-                
+
         }
     }//GEN-LAST:event_cboinfoActionPerformed
 
@@ -325,8 +324,7 @@ public class giaodienchinh extends javax.swing.JFrame {
         xuath.setLocationRelativeTo(null);
         xuath.setVisible(true);
         xuath.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -355,17 +353,13 @@ public class giaodienchinh extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(giaodienchinh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-               new giaodienchinh().setVisible(true);
-               
-            
-             
-               
+                new giaodienchinh().setVisible(true);
+
             }
         });
     }

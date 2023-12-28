@@ -11,16 +11,18 @@ import java.security.Timestamp;
  * @author gjang
  */
 public class hoadon {
-     private int id;
+
+    private int id;
     private int id_kh;
     private int id_sp;
-    private  String namesp;
-    private  String namekhachang;
+    private String namesp;
+    private String namekhachang;
     private int quantity;
     private int total;
     private int status;
     private String name;
     private int price;
+    private String create_at;
 
     public String getNamesp() {
         return namesp;
@@ -37,9 +39,8 @@ public class hoadon {
     public void setNamkhachang(String namkhachang) {
         this.namekhachang = namkhachang;
     }
-    private String create_at;
 
-    public hoadon(int id, int id_kh, int id_sp, int quantity, int total, int status, String name, int price , String create_at , String namesp, String namkhachang) {
+    public hoadon(int id, int id_kh, int id_sp, int quantity, int total, int status, String name, int price, String create_at, String namesp, String namkhachang) {
         this.id = id;
         this.id_kh = id_kh;
         this.id_sp = id_sp;
@@ -52,8 +53,6 @@ public class hoadon {
         this.namesp = namesp;
         this.namekhachang = namkhachang;
     }
-
-   
 
     public hoadon(String create_at) {
         this.create_at = create_at;
@@ -136,8 +135,7 @@ public class hoadon {
         return "hoadon{" + "id=" + id + ", id_kh=" + id_kh + ", id_sp=" + id_sp + ", quantity=" + quantity + ", total=" + total + ", status=" + status + ", name=" + name + ", price=" + price + '}';
     }
 
-
-    public hoadon(){
+    public hoadon() {
 
     }
 }

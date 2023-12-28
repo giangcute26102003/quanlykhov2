@@ -37,58 +37,61 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
     public int idsp;
     public int soluong;
     public khachhang newkhachhang;
-    
+
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     Date date = new Date();
     String time = dateFormat.format(date);
-    public phieuxuatkhov11(int idnv , int idsp , int soluong ,khachhang newkhachhang) {
+
+    public phieuxuatkhov11(int idnv, int idsp, int soluong, khachhang newkhachhang) {
         this.idnv = idnv;
         this.idsp = idsp;
         this.soluong = soluong;
         this.newkhachhang = newkhachhang;
         initComponents();
         Checkphieu();
-        
+
     }
-    public phieuxuatkhov11(){}
-    public void Checkphieu(){
+
+    public phieuxuatkhov11() {
+    }
+
+    public void Checkphieu() {
         userDAO nv = new userDAO();
         user qly = nv.loginbyid(String.valueOf(idnv));
         jnamenv.setText(qly.getName());
         String level_name = "";
         int level = qly.getLevel();
-            switch (level) {
-                case 1:
-                   level_name = "Giam doc";
-                    break;
-                case 2:
-                    level_name = "Quan ly";
-                    break;
-                case 3:
-                    level_name = "Nhan vien";
-                    break;
-                default:
-                    level_name = "Nhan vien";
-            }
+        switch (level) {
+            case 1:
+                level_name = "Giam doc";
+                break;
+            case 2:
+                level_name = "Quan ly";
+                break;
+            case 3:
+                level_name = "Nhan vien";
+                break;
+            default:
+                level_name = "Nhan vien";
+        }
         jlevel.setText(level_name);
-        
+
         jtime.setText(time);
-        
-         sanphamDAO sp = new sanphamDAO();
+
+        sanphamDAO sp = new sanphamDAO();
         ArrayList<san_pham> qlysp = sp.allsanphambyId(String.valueOf(idsp));
-        for(san_pham In : qlysp){
+        for (san_pham In : qlysp) {
             jidsp.setText(String.valueOf(In.getId()));
             jnamesp.setText(In.getName());
             jsoluong.setText(String.valueOf(soluong));
-            jtongtien.setText(String.valueOf(In.getPrice()*soluong));
+            jtongtien.setText(String.valueOf(In.getPrice() * soluong));
             jprice.setText(String.valueOf(In.getPrice()));
         }
-        
+
         jnamekh.setText(newkhachhang.getName());
         jaddress.setText(newkhachhang.getAddress());
         jphone.setText(newkhachhang.getPhone());
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -302,33 +305,32 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
         jPanelFooter10.setLayout(jPanelFooter10Layout);
         jPanelFooter10Layout.setHorizontalGroup(
             jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFooter10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFooter10Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
                     .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel23)))
+                .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel23)))
-                        .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                                .addGap(195, 195, 195)
-                                .addComponent(jLabel21))
-                            .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                                .addGap(189, 189, 189)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFooter10Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel19)))))
-                .addGap(62, 62, 62))
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel21))
+                    .addGroup(jPanelFooter10Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFooter10Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFooter10Layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
         jPanelFooter10Layout.setVerticalGroup(
             jPanelFooter10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -617,21 +619,21 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
 
     private void jprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jprintActionPerformed
         // TODO add your handling code here:
-       // jPanelControl.setVisible(false);
+        // jPanelControl.setVisible(false);
 
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setJobName("Print Data");
 
-        job.setPrintable(new Printable(){
-            public int print(Graphics pg,PageFormat pf, int pageNum){
+        job.setPrintable(new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum) {
                 pf.setOrientation(PageFormat.LANDSCAPE);
-                if(pageNum>0){
+                if (pageNum > 0) {
                     return Printable.NO_SUCH_PAGE;
                 }
 
-                Graphics2D g2 = (Graphics2D)pg;
+                Graphics2D g2 = (Graphics2D) pg;
                 g2.translate(pf.getImageableX(), pf.getImageableY());
-                g2.scale(0.7,0.7);
+                g2.scale(0.7, 0.7);
                 jPanel1.paint(g2);
                 //
 
@@ -642,55 +644,53 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
         });
 
         boolean ok = job.printDialog();
-        if(ok){
-            try{
+        if (ok) {
+            try {
 
                 job.print();
+            } catch (PrinterException ex) {
             }
-            catch (PrinterException ex){}
         }
         dispose();
     }//GEN-LAST:event_jprintActionPerformed
 
     private void jsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsaveActionPerformed
         // TODO add your handling code here:
-       
-            
-                hoadon hd = new hoadon();
-                khachhangDAO checkkh = new khachhangDAO();
-                int i  = checkkh.newkh();
-                hd.setId_kh(i);
-                hd.setId_sp(idsp);
-                hd.setQuantity(soluong);
-                hd.setCreate_at(time);
 
-                sanphamDAO sp = new sanphamDAO();
-                ArrayList<san_pham> qlysp = sp.allsanphambyId(String.valueOf(idsp));
-                for(san_pham In : qlysp){
-                    hd.setTotal(In.getPrice()*soluong);
-                }
-                jsave.setEnabled(false);
-                hoadonDAO checkhd = new hoadonDAO();
-                if(checkhd.inserthoadon(hd)>0){
-                    JOptionPane.showMessageDialog(rootPane, "thanh cong");
-                
-            
+        hoadon hd = new hoadon();
+        khachhangDAO checkkh = new khachhangDAO();
+        int i = checkkh.newkh();
+        hd.setId_kh(i);
+        hd.setId_sp(idsp);
+        hd.setQuantity(soluong);
+        hd.setCreate_at(time);
+
+        sanphamDAO sp = new sanphamDAO();
+        ArrayList<san_pham> qlysp = sp.allsanphambyId(String.valueOf(idsp));
+        for (san_pham In : qlysp) {
+            hd.setTotal(In.getPrice() * soluong);
+        }
+        jsave.setEnabled(false);
+        hoadonDAO checkhd = new hoadonDAO();
+        if (checkhd.inserthoadon(hd) > 0) {
+            JOptionPane.showMessageDialog(rootPane, "thanh cong");
+
         }
     }//GEN-LAST:event_jsaveActionPerformed
 
     private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel1MouseExited
 
     private void jPanel1AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorRemoved
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel1AncestorRemoved
 
     private void jPanel1ComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel1ComponentRemoved
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel1ComponentRemoved
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -699,7 +699,7 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
 
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel1ComponentShown
 
     /**
@@ -727,10 +727,6 @@ public class phieuxuatkhov11 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(phieuxuatkhov11.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

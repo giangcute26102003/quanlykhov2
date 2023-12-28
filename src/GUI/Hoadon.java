@@ -30,7 +30,6 @@ public class Hoadon extends javax.swing.JFrame {
      */
     ArrayList<hoadon> list = new ArrayList<hoadon>();
     String search = "";
-    
 
     public Hoadon() {
         initComponents();
@@ -38,12 +37,12 @@ public class Hoadon extends javax.swing.JFrame {
         hienthilentable();
 
     }
-    
-     public void hienthilentable(){
-         hoadonDAO hd = new hoadonDAO();
-         search = jsearch.getText();
-         list = hd.inhoadon(search);
-        DefaultTableModel tblhd = (DefaultTableModel)jtblhd.getModel(); 
+
+    public void hienthilentable() {
+        hoadonDAO hd = new hoadonDAO();
+        search = jsearch.getText();
+        list = hd.inhoadon(search);
+        DefaultTableModel tblhd = (DefaultTableModel) jtblhd.getModel();
         tblhd.setRowCount(0);
         for (hoadon each : list) {
             int id_kh = each.getId_kh();
@@ -59,8 +58,8 @@ public class Hoadon extends javax.swing.JFrame {
 //         int price = 111;
 //         int quantity = 1;
 //         String nsx="111";
-           tblhd.addRow(new Object[]{id_kh, namekh, namesp, price, quantity, total,time});
-           
+            tblhd.addRow(new Object[]{id_kh, namekh, namesp, price, quantity, total, time});
+
         }
 
     }
@@ -193,8 +192,6 @@ public class Hoadon extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Hoadon.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
